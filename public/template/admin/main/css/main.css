@@ -1,0 +1,62 @@
+.main__active {
+    width: 160px;
+}
+.main__table__delete__link {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+.main__table__delete__link:hover {
+    color: #fff;
+}
+.main__table__delete__link--remove {
+    background-color: #e52e2e;
+}
+.main__table__delete__link--edit {
+    background-color: #2e83e5;
+}
+.main__table__delete {
+    width: 100%;
+    display: flex;
+    gap: 6px;
+    justify-content: end;
+}
+.main__alert {
+    position: fixed;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    z-index: 1500;
+    animation: remove linear 1s;
+}
+.oh {
+    display: none;
+}
+
+@keyframes remove {
+    from {
+        top: -50px;
+    }
+    to {
+        top: 6px;
+    }
+}
+.main__avatar {
+    margin-top: 10px;
+}
+.main__avatar__image {
+    width: 100px;
+    height: 120px;
+}
+.hidden {
+    display: none !important;
+}
+.main__product__image {
+    width: 40px;
+    height: 40px;
+}

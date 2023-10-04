@@ -1,0 +1,40 @@
+.oh,
+.on-hide {
+  display: none;
+}
+.oh-1 {
+  display: none !important;
+}
+.os,
+.on-show {
+  display: block;
+}
+.os-1 {
+  display: block !important;
+}
+.on-show__flex {
+  display: flex;
+}
+
+.on-show__ib {
+  display: inline-block;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+@media screen and (max-width: 767.98px) {
+  .moh,
+  .mobile {
+    display: none;
+  }
+}
+
+/* css */
+.product-list__color::after {
+  background-color: var(--product-color);
+}
+.detall__container__share__list-link {
+  background-color: var(--scial-icon-bg);
+}
