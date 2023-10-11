@@ -71,14 +71,6 @@ $(".search__overlay").click(function () {
     $(".search").addClass("oh");
     $(".search__overlay").addClass("oh");
 });
-$("#search").focus(function () {
-    $(".search__main__dropdown").show();
-});
-$("#search").focusout(function () {
-    setTimeout(() => {
-        $(".search__main__dropdown").hide();
-    }, 500);
-});
 
 $(".modal__close").click(function () {
     $(".modal").hide();

@@ -7,9 +7,10 @@
       <input
         type="text"
         class="search__main-input"
-        placeholder="Tìm thương hiệu"
         id="search"
         name="search"
+        value=""
+        placeholder="Tìm thương hiệu"
 
       />
       <button class="btn search__main-btn">
@@ -17,24 +18,9 @@
       </button>
 
       <div class="search__main__dropdown">
-        <ul class="search__main__dropdown-list">
+        <ul class="search__main__dropdown-list" id="search__main__dropdown">
           <li class="search__main__dropdown-item">
-            <a href="" class="search__main__dropdown-text">áo thun</a>
-          </li>
-          <li class="search__main__dropdown-item">
-            <a href="" class="search__main__dropdown-text">áo thun</a>
-          </li>
-          <li class="search__main__dropdown-item">
-            <a href="" class="search__main__dropdown-text">áo thun</a>
-          </li>
-          <li class="search__main__dropdown-item">
-            <a href="" class="search__main__dropdown-text">áo thun</a>
-          </li>
-          <li class="search__main__dropdown-item">
-            <a href="" class="search__main__dropdown-text">áo thun</a>
-          </li>
-          <li class="search__main__dropdown-item">
-            <a href="" class="search__main__dropdown-text">áo thun</a>
+            <a href="/?search=áo dev" class="search__main__dropdown-text">áo dev</a>
           </li>
         </ul>
       </div>
@@ -227,7 +213,7 @@
 <div class="main">
   <header class="header">
     <div class="header__top">
-      <a href="#" class="header__top-link"
+      <a href="/san-pham.html" class="header__top-link"
         >Piên bản mới - Sự thay đổi lớn của basic</a
       >
       <span class="header__top-close">
@@ -338,7 +324,7 @@
                   >
                 </li>
                 <li class="header__user-item">
-                  <a href="/dang-ky.html" class="header__user-link">Đăng ký</a>
+                  <a href="#" class="header__user-link">Đăng ký</a>
                 </li>
               </ul>
             </div>

@@ -28,7 +28,8 @@ Route::post('user/login', [LoginController::class, 'login']);
 Route::get('user/logout', [MainController::class, 'logout']);
 
 
-Route::get('dang-nhap.html', [AccountController::class, 'login']);
+Route::get('dang-nhap.html', [AccountController::class, 'index']);
+Route::post('dang-nhap.html', [AccountController::class, 'login']);
 
 Route::middleware(['auth'])->group(function() {
     Route::prefix('admin')->group(function() {
@@ -92,6 +93,7 @@ Route::middleware(['auth'])->group(function() {
 Route::get('/', [App\Http\Controllers\MainController::class, 'index']);
 Route::get('san-pham/{slug}.html', [App\Http\Controllers\MainController::class, 'detall']);
 Route::get('gioi-thieu.html', [App\Http\Controllers\MainController::class, 'intro']);
+Route::get('search', [App\Http\Controllers\MainController::class, 'search']);
 
 Route::get('tin-tuc.html', [App\Http\Controllers\PostController::class, 'index']);
 

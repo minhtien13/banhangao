@@ -92,7 +92,13 @@ class productService
         }
     }
     
-    public function getListDetall($menuId = 0, $id = 0) {
+    public function getListDetall($menuId = 0, $id = 0) 
+    {
         return product::where('is_active', 1)->where('menu_id', $menuId)->where('id', '!=', $id)->limit(5)->orderByDesc("id")->get();
+    }
+
+    public function search()
+    {
+        return product::select('title', 'id')->where('is_active', 1)->get();
     }
 }

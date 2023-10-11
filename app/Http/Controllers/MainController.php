@@ -51,4 +51,10 @@ class MainController extends Controller
             'intro' => $this->introService->show()
         ]);
     }
+
+    public function search()
+    {
+        $resuit = $this->productService->search();
+        return response()->json(['error' => false, 'data' => $resuit]);
+    }
 }

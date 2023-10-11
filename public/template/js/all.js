@@ -298,3 +298,48 @@ function deleteCart(id = 0) {
         },
     });
 }
+
+let data = [];
+$("#search").focus(function () {
+    $(".search__main__dropdown").show();
+    $.ajax({
+        type: "GET",
+        url: "/search",
+        dataType: "JSON",
+        success: function (response) {
+            data = response.data;
+        },
+    });
+});
+$("#search").focusout(function () {
+    setTimeout(() => {
+        $(".search__main__dropdown").hide();
+    }, 500);
+});
+
+$("#search").keyup(function () {
+    var search = $(this).val();
+
+    if (search == "") {
+        $(".search__main__dropdown").addClass("oh");
+    } else {
+        var resuit = data.filter((row) => {
+            return row.title.toUpperCase().includes(search.toUpperCase());
+        });
+        var html = searchs(resuit);
+        $("#search__main__dropdown").html(html);
+    }
+});
+
+function searchs(data) {
+    var html = "";
+    data.forEach((items) => {
+        html += `
+         <li class="search__main__dropdown-item">
+            <a href="/?search=${items.title}" class="search__main__dropdown-text">${items.title}</a>
+        </li>
+        `;
+    });
+
+    return html;
+}
