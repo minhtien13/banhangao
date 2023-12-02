@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Admin\SoclaiController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\ContactControlle;
@@ -8,20 +10,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\user\LoginController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadFileController;
+use Illuminate\Support\Facades\Artisan;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('user/login', [LoginController::class, 'index'])->name('login');
 Route::post('user/login', [LoginController::class, 'login']);
@@ -29,7 +23,8 @@ Route::get('user/logout', [MainController::class, 'logout']);
 
 
 Route::get('dang-nhap.html', [AccountController::class, 'index']);
-Route::post('dang-nhap.html', [AccountController::class, 'login']);
+Route::get('tai-khoan.html', [AccountController::class, 'account']);
+Route::post('user/acc/login', [AccountController::class, 'login']);
 
 Route::middleware(['auth'])->group(function() {
     Route::prefix('admin')->group(function() {
@@ -72,6 +67,24 @@ Route::middleware(['auth'])->group(function() {
             Route::DELETE('remove', [ContactControlle::class, 'destroy']);
         });
        
+        Route::prefix('soclai')->group(function() {
+            Route::get('add', [SoclaiController::class, 'create']);
+            Route::post('add', [SoclaiController::class, 'store']);
+            Route::get('list', [SoclaiController::class, 'index']);
+            Route::get('edit/{id}', [SoclaiController::class, 'edit']);
+            Route::post('edit/{id}', [SoclaiController::class, 'update']);
+            Route::DELETE('remove', [SoclaiController::class, 'destroy']);
+        });
+
+        Route::prefix('policy')->group(function() {
+            Route::get('add', [PolicyController::class, 'create']);
+            Route::post('add', [PolicyController::class, 'store']);
+            Route::get('list', [PolicyController::class, 'index']);
+            Route::get('edit/{id}', [PolicyController::class, 'edit']);
+            Route::post('edit/{id}', [PolicyController::class, 'update']);
+            Route::DELETE('remove', [PolicyController::class, 'destroy']);
+        });
+       
         Route::prefix('cart')->group(function() {
             Route::get('list', [CartController::class, 'index']);
             Route::get('view/{id}', [CartController::class, 'cart']);
@@ -94,6 +107,7 @@ Route::get('/', [App\Http\Controllers\MainController::class, 'index']);
 Route::get('san-pham/{slug}.html', [App\Http\Controllers\MainController::class, 'detall']);
 Route::get('gioi-thieu.html', [App\Http\Controllers\MainController::class, 'intro']);
 Route::get('search', [App\Http\Controllers\MainController::class, 'search']);
+Route::get('tin-tuc/{slug}.html', [App\Http\Controllers\MainController::class, 'categry']);
 
 Route::get('tin-tuc.html', [App\Http\Controllers\PostController::class, 'index']);
 
@@ -110,3 +124,5 @@ Route::get('gio-hang.html', [App\Http\Controllers\CartContoller::class, 'index']
 Route::post('cart-delete', [App\Http\Controllers\CartContoller::class, 'delete']);
 Route::get('dat-hang.html', [App\Http\Controllers\CartContoller::class, 'checkout']);
 Route::post('cart/store', [App\Http\Controllers\CartContoller::class, 'store']);
+Route::post('cart/qty', [App\Http\Controllers\CartContoller::class, 'countQty']);
+Route::post('cart/item', [App\Http\Controllers\CartContoller::class, 'itemCart']);

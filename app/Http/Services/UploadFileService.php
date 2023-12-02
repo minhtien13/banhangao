@@ -2,6 +2,8 @@
 
 namespace App\Http\Services;
 
+use Illuminate\Support\Facades\Storage;
+
 class UploadFileService
 {
     public function uploadFile($request)
@@ -10,9 +12,9 @@ class UploadFileService
             try {
                 $name = $request->file('file')->getClientOriginalName();
                 $pathFull = 'upload/' . date("Y/m/d");
-                $request->file('file')->storeAs('public/' . $pathFull,  $name);
+                $request->file('file')->storeAs($pathFull,  $name, 'public_uploads');
     
-                return '/storage/' . $pathFull . '/' . $name;
+                return '/uploads/' . $pathFull . '/' . $name;
             } catch (\Exception $err) {
                 return false;
             }

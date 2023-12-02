@@ -89,6 +89,8 @@
                 <h3 class="detall__container__heading">Màu sắc</h3>
                 <span class="detall__container__type-color product-list__color" style="--product-color: {{ $detall->product_color }}"></span>
               </div>
+
+              @if ($detall->price != 0 || $detall->price_sale != 0)
               <div class="detall__container__add">
                 <div class="detall__container__add__qty">
                   <button class="detall__container__add__qty-btn btn minu">
@@ -109,13 +111,15 @@
                 <div class="detall__container__cart__message">
                   Gọi đặt mua <span>0383300680</span> (8:30 - 20:00)
                 </div>
-              </div>
+              </div> 
               <div class="detall__container__media">
                 <img src="/template/images/gh.jpg" alt="" class="detall__container__media-image">
                 <span class="detall__container__media-txt">
                   Giao hàng toàn quốc
                 </span>
               </div>
+              @endif
+             
             </div>
           </div>
           <div class="detall__container moh">

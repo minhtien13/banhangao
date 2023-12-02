@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\intro\introService;
-use App\Http\Services\menu\MenuService;
+use App\Http\Services\menu\menuService;
+use App\Http\Services\policy\policyService;
 use App\Http\Services\product\productService;
-use App\Models\product;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -13,11 +13,13 @@ class MainController extends Controller
     protected $productService;
     protected $menuService;
     protected $introService;
+    protected $policyService;
 
-    public function __construct(productService $productService)
+    public function __construct(productService $productService, menuService $menuService, policyService $policyService)
     {
         $this->productService = $productService;
-        $this->menuService = new MenuService;
+        $this->menuService = $menuService;
+        $this->policyService = $policyService;
         $this->introService = new introService;
     }
     
@@ -38,7 +40,7 @@ class MainController extends Controller
         return view('porducts.detall', [
             'title' => 'Trang chủ',
             'detall' => $detall,
-            'staturs' => 2,
+            'staturs' => 3,
             'product' => $this->productService->getListDetall($detall->menu_id, $detall->id)
         ]);
     }
@@ -56,5 +58,15 @@ class MainController extends Controller
     {
         $resuit = $this->productService->search();
         return response()->json(['error' => false, 'data' => $resuit]);
+    }
+
+    public function categry($slug)
+    { 
+        $resuit = $this->policyService->content($slug);
+        return view('blogs.cage', [
+            'title' => 'shop basic - ' . $resuit['title'],
+            'staturs' => 2,
+            'data' => $resuit
+        ]);
     }
 }

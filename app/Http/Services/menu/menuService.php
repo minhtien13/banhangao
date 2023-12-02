@@ -6,7 +6,7 @@ use App\Http\Requests\menu\createRequestMenu;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Session;
 
-class MenuService
+class menuService
 {
     public function insert($request)
     {

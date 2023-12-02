@@ -44,5 +44,30 @@
           <p>Danh sách liên hệ</p>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="/admin/soclai/add" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Tạo mới liên kết</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/admin/soclai/list" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Danh sách liên kết</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/admin/policy/add" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Tạo mới chính sách</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="/admin/policy/list" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Danh sách chính sách</p>
+        </a>
+      </li>
     </ul>
+
   </li>   

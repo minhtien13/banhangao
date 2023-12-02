@@ -80,7 +80,7 @@ class productService
         if ($url != '') {
             return product::where('is_active', 1)
                 ->where('slug_url', $url)
-                ->select('title','slug_url', 'thumb', 'price', 'menu_id', 'price_sale', 'id', 'product_color', 'product_code')
+                ->select('title','slug_url', 'thumb', 'price', 'menu_id', 'price_sale', 'id', 'product_color', 'product_code', 'content')
                 ->first();
         }
        

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\helpers\helper;
 use App\Http\Services\cart\CartService;
 use App\Models\curtomer;
 use Illuminate\Http\Request;
@@ -68,5 +69,17 @@ class CartContoller extends Controller
             return redirect('/gio-hang.html');
         }
         return redirect('/gio-hang.html');
+    }
+
+    public function countQty(Request $request)
+    {
+        $number = helper::countCart();
+        return response()->json(['error' => false, 'qty' => $number]);
+    }
+
+    public function itemCart(Request $request)
+    {
+        $data = helper::autoLoadCart();
+        return response()->json(['error' => false, 'data' => $data]);
     }
 }

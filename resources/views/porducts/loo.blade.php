@@ -35,7 +35,7 @@
           </div>
           <div class="product-list__content">
             <a href="/san-pham/{{ $productItem->slug_url }}.html" class="product-list__title">
-              <h3>{{ $productItem->title }}</h3>
+              <h1>{{ $productItem->title }}</h1>
             </a>
             
             {!! App\helpers\helper::headPrice($productItem->price, $productItem->price_sale) !!}

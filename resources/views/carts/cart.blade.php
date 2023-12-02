@@ -49,8 +49,8 @@
                                     $sum = $price * $cart[$row->id]; 
                                     $sumAll += $sum;
                                 @endphp
-                                <div class="cart__container__order__item" id="cart__id__{{ $row->id }}">
-                                    <a href="javascript:void(0)" onClick="deleteCart({{ $row->id }})" class="cart__container__order__close">
+                                <div class="cart__container__order__item cart__id__{{ $row->id }}">
+                                    <a href="javascript:void(0)" onClick="deleteCart({{ $row->id }}, 1)" class="cart__container__order__close">
                                     <i class="fas fa-times"></i>
                                     </a>
                                     <img src="{{ $row->thumb }}" alt="" class="cart__container__order__image">

@@ -3,9 +3,8 @@
 namespace App\helpers;
 
 use App\Http\Services\cart\CartService;
-use App\Http\Services\menu\MenuService;
+use App\Http\Services\menu\menuService;
 use App\Http\Services\product\productService;
-use App\Models\product;
 use Illuminate\Support\Facades\Session;
 
 class helper  
@@ -67,7 +66,7 @@ class helper
 
     public static function bar($menu = 0, $title = '')
     {
-        $menus = new MenuService;
+        $menus = new menuService;
 
         if ($menu != 0) {
             $menuData = $menus->menuId($menu);
@@ -83,10 +82,9 @@ class helper
             return ' <li class="bread__list-item">
                       <a href="/danh-muc/'.$menuData->id . '-'  . \Str::slug($menuData->name, '-') .'.html" class="bread__list-link">'. $menuData->name .' /</a>
                     </li>
-                     <li class="bread__list-item">
-                      <span class="bread__list-link">'. $title .'</span>
+                    <li class="bread__list-item">
+                      <a href=".html" class="bread__list-link">'. $title .'</a>
                     </li>
-                    
                     ';
         }
     }
@@ -240,7 +238,7 @@ class helper
 
     public static function headMenu($menuId)
     {
-        $menu = new MenuService;
+        $menu = new menuService;
         $data = $menu->getHome($menuId);
         $html = '';
 
@@ -278,13 +276,13 @@ class helper
 
         if (isset($carts) && count($carts) != 0) {
             $sumAll = 0;
-            $html .= '<ul class="header__cart__list">';
+            $html .= '<ul class="header__cart__list" >';
             foreach ($data as $key => $row) {
                 $price = $row['price_sale'] != 0 ? $row['price_sale'] : $row['price'];
                 $sumAll += $price * $carts[$row['id']];
 
                 $html .= '
-                    <li class="header__cart__list-item" id="cart__dropdown__'. $row['id'] .'">
+                    <li class="header__cart__list-item cart__dropdown__'. $row['id'] .'">
                     <a href="" class="header__cart__list-ima">
                     <img
                         src="'. $row['thumb'] .'"
@@ -326,5 +324,22 @@ class helper
         }
         
         return $html;
+    }
+
+    public static function countCart() 
+    {
+        $number = 0;
+        $cart = Session::get('carts');
+        if(isset($cart)) {
+          if (count($cart) != 0) {
+            $number = count($cart);
+          }
+
+          if (count($cart) == 0) {
+            $number = count($cart);
+          }
+        }
+        
+        return $number;
     }
 }

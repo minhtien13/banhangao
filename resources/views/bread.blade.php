@@ -6,7 +6,7 @@
         </li>
 
         @if ($staturs == 3)
-          {!! App\helpers\helper::bar($product->menu_id, $product->title) !!}
+          {!! App\helpers\helper::bar($detall->menu_id, $detall->title) !!}
         @endif
 
         @if ($staturs != 3)

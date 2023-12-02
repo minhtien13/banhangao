@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\menu\createRequestMenu;
-use App\Http\Services\menu\MenuService;
+use App\Http\Services\menu\menuService;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 
@@ -12,7 +12,7 @@ class MenuController extends Controller
 {
   protected $menuService;
 
-  public function __construct(MenuService $menuService)
+  public function __construct(menuService $menuService)
   {
       $this->menuService = $menuService;  
   }

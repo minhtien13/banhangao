@@ -115,3 +115,11 @@ $("#price_old").keyup(function () {
 $("#price_sale").keyup(function () {
     headPrice();
 });
+
+$("#is_title").keyup(function () {
+    var link = $(this).val();
+
+    var url = toSlug(link);
+
+    $("#link_url").val(url);
+});

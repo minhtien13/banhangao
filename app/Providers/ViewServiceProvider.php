@@ -2,7 +2,9 @@
  
 namespace App\Providers;
 
-use App\View\Composers\contactComposer;
+use App\view\composers\ContactComposer;
+use App\view\composers\PolicyComposer;
+use App\view\composers\SoclaiComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
  
@@ -26,5 +28,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         view::composer('footer', ContactComposer::class);
+        view::composer('footer', SoclaiComposer::class);
+        view::composer('footer', PolicyComposer::class);
     }
 }

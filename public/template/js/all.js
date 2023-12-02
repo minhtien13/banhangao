@@ -110,10 +110,32 @@ function addCart(staturs = 0) {
                     window.location.replace("/gio-hang.html");
                 } else {
                     alert(response.message);
+                    loadCart();
                 }
             } else {
                 alert(response.message);
             }
+        },
+    });
+}
+
+function loadCart() {
+    $.ajax({
+        type: "POST",
+        url: "cart/qty",
+        dataType: "JSON",
+        success: function (response) {
+            $(".header__cart-qty").text(response.qty);
+        },
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "cart/item",
+        dataType: "JSON",
+        success: function (response) {
+            $("#header__cart__dropdown__2").html(response.data);
+            $("#header__cart__dropdown__1").html(response.data);
         },
     });
 }
@@ -126,8 +148,8 @@ function loadDetall(id = 0) {
         dataType: "JSON",
         success: function (response) {
             if (response.error == false) {
-                var html = renderDetall(response.data);
-                $(".detall__modal__html").html(html);
+                renderDetall(response.data);
+
                 setTimeout(() => {
                     $(".detall__modal").removeClass("oh");
                     $(".detall__modal__overlay").removeClass("oh");
@@ -140,8 +162,9 @@ function loadDetall(id = 0) {
 }
 
 function renderDetall(data) {
-    var html = `
-        <div class="detall__modal__wrapper">
+    $(".detall__container__add__qty-number").val(1);
+    $("#cart_product_id").val(data.id);
+    var img = `
         <div class="detall__container__slider__left">
         <ul class="detall__container__slider__left__list">
             <li
@@ -178,9 +201,10 @@ function renderDetall(data) {
             alt=""
             class="detall__container__ima-image"
         />
-        </div>
-    </div>
-    <div class="detall__modal__wrapper">
+        </div>`;
+    $("#detall__container__image").html(img);
+
+    var info = `
         <h1 class="detall__container__title">${data.title}</h1>
         <div class="detall__container__bar">
         <p class="detall__container__bar-name">
@@ -224,29 +248,13 @@ function renderDetall(data) {
         ></span>
         </div>
         
-        <div class="detall__container__add">
-        <div class="detall__container__add__qty">
-            <a href="javacript:void(0)" class="detall__container__add__qty-btn btn minu">
-            <i class="fas fa-minus"></i>
-            </a>
-            <input
-            type="number"
-            value="1"
-            class="detall__container__add__qty-number"
-            id="qty"
-            />
-            <a href="javacript:void(0)" class="detall__container__add__qty-btn btn plug">
-            <i class="fas fa-plus"></i>
-            </a>
-        </div>
-        <input type="text" class="oh" id="cart_product_id" value="${data.id}">
-        <button class="btn detall__container__add__btn" onClick="addCart()">
-            THÊM VÀO GIỞ HÀNG
-        </button>
-        </div>
+     
     </div>`;
+    $("#detall__info").html(info);
 
-    return html;
+    if (data.price == 0 && data.price_sale == 0) {
+        $(".detall__container__add").remove();
+    }
 }
 
 function detallPrice(priceOld = 0, priceSale = 0) {
@@ -277,7 +285,7 @@ function detallPrice(priceOld = 0, priceSale = 0) {
     return html;
 }
 
-function deleteCart(id = 0) {
+function deleteCart(id = 0, staturs = 0) {
     if (id == 0) {
         return false;
     }
@@ -289,19 +297,20 @@ function deleteCart(id = 0) {
         dataType: "JSON",
         success: function (response) {
             alert(response.message);
-            $("#cart__id__" + id).remove();
-            $("#cart__dropdown__" + id).remove();
+            $(".cart__id__" + id).remove();
+            loadCart();
 
-            setTimeout(() => {
+            var item = $(".cart__container__order__item");
+
+            if (item.length == 0 && staturs == 1) {
                 location.reload();
-            }, 300);
+            }
         },
     });
 }
 
 let data = [];
 $("#search").focus(function () {
-    $(".search__main__dropdown").show();
     $.ajax({
         type: "GET",
         url: "/search",
@@ -311,23 +320,27 @@ $("#search").focus(function () {
         },
     });
 });
+
 $("#search").focusout(function () {
     setTimeout(() => {
-        $(".search__main__dropdown").hide();
+        $(".search__main__dropdown").removeClass("os");
     }, 500);
 });
 
 $("#search").keyup(function () {
+    $(".search__main__dropdown").addClass("os");
     var search = $(this).val();
-
-    if (search == "") {
-        $(".search__main__dropdown").addClass("oh");
+    console.log(search.length);
+    if (search.length == 0) {
+        $(".search__main__dropdown").removeClass("os");
+        return false;
     } else {
+        $(".search__main__dropdown").addClass("os");
         var resuit = data.filter((row) => {
             return row.title.toUpperCase().includes(search.toUpperCase());
         });
         var html = searchs(resuit);
-        $("#search__main__dropdown").html(html);
+        $("#search__main__dropdown__item").html(html);
     }
 });
 

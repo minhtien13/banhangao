@@ -70,11 +70,11 @@
       </div>
 
       <div class="form-group">
-        <label for="exampleInputEmail1">link</label>
+        <label for="exampleInputEmail1">Ảnh sản phẩm</label>
         <input type="file"  class="form-control" id="upload_file" placeholder="Đường dãn"> 
         <input type="hidden" name="thumb" id="url_image">
         <div class="main__avatar">
-            {{-- <img src="/storage/upload/2023/08/26/ao1.jpg" alt="" class="main__avatar__image"> --}}
+         
         </div>
       </div>
       <div class="form-group">

@@ -18,7 +18,7 @@ class ContactController extends Controller
     {
         return view('blogs.contact', [
             'title' => 'liên hệ',
-            'staturs' => 2,
+            'staturs' => 1,
             'data' => $this->contactService->show()
         ]);
     }

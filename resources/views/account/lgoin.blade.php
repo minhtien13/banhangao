@@ -16,7 +16,7 @@
           </div>
           <div class="account__main">
             <p class="account__main__label">thông tin cá nhân</p>
-            <form action="" method="POST" class="account__main__form">
+            <form action="/user/acc/login" method="POST" class="account__main__form">
               <div class="account__main__form-war">
                 <label for="" class="account__main__form-label">Gmail</label>
                 <input type="email" name="email" class="account__main__form-input" placeholder="Gmail">

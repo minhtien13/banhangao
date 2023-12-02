@@ -18,10 +18,8 @@
       </button>
 
       <div class="search__main__dropdown">
-        <ul class="search__main__dropdown-list" id="search__main__dropdown">
-          <li class="search__main__dropdown-item">
-            <a href="/?search=áo dev" class="search__main__dropdown-text">áo dev</a>
-          </li>
+        <ul class="search__main__dropdown-list" id="search__main__dropdown__item">
+            {{-- reder item --}}
         </ul>
       </div>
     </form>
@@ -52,157 +50,9 @@
           <a href="javascript:void(0)" class="header-right__link">
             <i class="fa-sharp fa-solid fa-bag-shopping"></i>
           </a>
-          <span class="header__cart-qty"> 5 </span>
-          <div class="header__cart__dropdown">
-            <p class="header__cart__dropdown-message oh">
-              Giỏ hàng không có sản phẩm
-            </p>
-
-            <ul class="header__cart__list">
-              <li class="header__cart__list-item">
-                <a href="" class="header__cart__list-ima">
-                  <img
-                    src="/template/images/ao5.jpg"
-                    alt=""
-                    class="header__cart__list-image"
-                  />
-                </a>
-                <div class="header__cart__list-content">
-                  <a href="" class="header__cart__list-title">
-                    T-Shirt HYBID WATER
-                  </a>
-                  <p class="header__cart__list-type">m / trắng</p>
-                  <span class="header__cart__list-price">
-                    280.000<sub>đ</sub>
-                  </span>
-                  <span class="header__cart__list-qty">x 1</span>
-                </div>
-                <a href="" class="header__cart__list-close">
-                  <i class="fas fa-times"></i>
-                </a>
-              </li>
-              <li class="header__cart__list-item">
-                <a href="" class="header__cart__list-ima">
-                  <img
-                    src="/template/images/ao5.jpg"
-                    alt=""
-                    class="header__cart__list-image"
-                  />
-                </a>
-                <div class="header__cart__list-content">
-                  <a href="" class="header__cart__list-title">
-                    T-Shirt HYBID WATER
-                  </a>
-                  <p class="header__cart__list-type">m / trắng</p>
-                  <span class="header__cart__list-price">
-                    280.000<sub>đ</sub>
-                  </span>
-                  <span class="header__cart__list-qty">x 1</span>
-                </div>
-                <a href="" class="header__cart__list-close">
-                  <i class="fas fa-times"></i>
-                </a>
-              </li>
-              <li class="header__cart__list-item">
-                <a href="" class="header__cart__list-ima">
-                  <img
-                    src="/template/images/ao5.jpg"
-                    alt=""
-                    class="header__cart__list-image"
-                  />
-                </a>
-                <div class="header__cart__list-content">
-                  <a href="" class="header__cart__list-title">
-                    T-Shirt HYBID WATER
-                  </a>
-                  <p class="header__cart__list-type">m / trắng</p>
-                  <span class="header__cart__list-price">
-                    280.000<sub>đ</sub>
-                  </span>
-                  <span class="header__cart__list-qty">x 1</span>
-                </div>
-                <a href="" class="header__cart__list-close">
-                  <i class="fas fa-times"></i>
-                </a>
-              </li>
-              <li class="header__cart__list-item">
-                <a href="" class="header__cart__list-ima">
-                  <img
-                    src="/template/images/ao5.jpg"
-                    alt=""
-                    class="header__cart__list-image"
-                  />
-                </a>
-                <div class="header__cart__list-content">
-                  <a href="" class="header__cart__list-title">
-                    T-Shirt HYBID WATER
-                  </a>
-                  <p class="header__cart__list-type">m / trắng</p>
-                  <span class="header__cart__list-price">
-                    280.000<sub>đ</sub>
-                  </span>
-                  <span class="header__cart__list-qty">x 1</span>
-                </div>
-                <a href="" class="header__cart__list-close">
-                  <i class="fas fa-times"></i>
-                </a>
-              </li>
-              <li class="header__cart__list-item">
-                <a href="" class="header__cart__list-ima">
-                  <img
-                    src="/template/images/ao5.jpg"
-                    alt=""
-                    class="header__cart__list-image"
-                  />
-                </a>
-                <div class="header__cart__list-content">
-                  <a href="" class="header__cart__list-title">
-                    T-Shirt HYBID WATER
-                  </a>
-                  <p class="header__cart__list-type">m / trắng</p>
-                  <span class="header__cart__list-price">
-                    280.000<sub>đ</sub>
-                  </span>
-                  <span class="header__cart__list-qty">x 1</span>
-                </div>
-                <a href="" class="header__cart__list-close">
-                  <i class="fas fa-times"></i>
-                </a>
-              </li>
-              <li class="header__cart__list-item">
-                <a href="" class="header__cart__list-ima">
-                  <img
-                    src="/template/images/ao5.jpg"
-                    alt=""
-                    class="header__cart__list-image"
-                  />
-                </a>
-                <div class="header__cart__list-content">
-                  <a href="" class="header__cart__list-title">
-                    T-Shirt HYBID WATER
-                  </a>
-                  <p class="header__cart__list-type">m / trắng</p>
-                  <span class="header__cart__list-price">
-                    280.000<sub>đ</sub>
-                  </span>
-                  <span class="header__cart__list-qty">x 1</span>
-                </div>
-                <a href="" class="header__cart__list-close">
-                  <i class="fas fa-times"></i>
-                </a>
-              </li>
-            </ul>
-            <div class="header__cart__bottom">
-              <div class="header__cart__payment">
-                <p class="header__cart__payment-all">
-                  Tổng tiền tính tạm:
-                  <span>280.000<sup>đ</sup></span>
-                </p>
-                <a href="" class="btn header__cart__payment-btn">
-                  Tiến hành thanh toán
-                </a>
-              </div>
-            </div>
+          <span class="header__cart-qty"> {{ App\helpers\helper::countCart() }} </span>
+          <div class="header__cart__dropdown" id="header__cart__dropdown__1">
+            {!! App\helpers\helper::autoLoadCart() !!}
           </div>
         </li>
       </ul>
@@ -276,7 +126,7 @@
               </a>
             </li>
             <li class="header-menu__item">
-              <a href="/gioi-thieu.htmL" class="header-menu__link"
+              <a href="/gioi-thieu.html" class="header-menu__link"
                 >Giới thiệu
               </a>
             </li>
@@ -334,25 +184,11 @@
               <i class="fa-sharp fa-solid fa-bag-shopping"></i>
             </a>
             <span class="header__cart-qty"> 
-              @php
-                $cart = \Session::get('carts');
-              if(isset($cart)) {
-                if (count($cart) != 0) {
-                  echo count($cart);
-                }
-
-                if (count($cart) == 0) {
-                  echo count($cart);
-                }
-              } else {
-                echo 0;
-              }
-              @endphp  
-            </span>
-            <div class="header__cart__dropdown">
+              {{ App\helpers\helper::countCart() }}
              
+            </span>
+            <div class="header__cart__dropdown" id="header__cart__dropdown__2">     
               {!! App\helpers\helper::autoLoadCart() !!}
-
             </div>
           </li>
         </ul>

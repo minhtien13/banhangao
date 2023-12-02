@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Form\formRquest;
-use Illuminate\Support\Facades\Sessionp;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AccountController extends Controller
 {
@@ -17,10 +17,28 @@ class AccountController extends Controller
        ]); 
     }
 
-    public function login(formRquest $request)
+    public function login(Request $request)
     {
-        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $request->input('remember'))) {
-            return redirect()->route('admin');
-        }
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        $acc = User::where('email', $email)->first();
+
+       if (password_verify($password, $acc->password) == false) {
+        Session::flash('success', 'email hoặc password không dúng');
+        return redirect()->back();
+       }  
+
+       if ($acc->level == 1 || $acc->level == 2) {
+          return redirect()->route('login');
+       }
+    }
+
+    public function account()
+    {
+        return view('account.acc', [
+            'title' => 'BASIC',
+            'staturs' => 2
+        ]);
     }
 }

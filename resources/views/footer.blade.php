@@ -20,37 +20,35 @@
         <div class="footer__item">
           <h3 class="footer__list--heading">Chính Sách</h3>
           <ul class="footer__list">
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link">Chính Sách bảo mặt</a>
-            </li>
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link">Chính sách vận chuyển</a>
-            </li>
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link">Chính sách đổi trả</a>
-            </li>
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link">Quy định sử dụng</a>
-            </li>
+            @if (count($policy) != 0)
+               @foreach ($policy as $item)
+                  @if ($item->is_type == 1)
+                    <li class="footer__list-item">
+                      <a href="/tin-tuc/{{ $item->link_url }}.html" class="footer__list-link">
+                        {{ $item->title }}
+                      </a>
+                    </li> 
+                  @endif              
+              @endforeach
+            @endif
+           
+          
           </ul>
         </div>
         <div class="footer__item">
           <h3 class="footer__list--heading">Thông Tin hổ trợ</h3>
           <ul class="footer__list">
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link"> Hướng dẫn mua hàng </a>
-            </li>
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link">
-                Hướng dẫn thanh toán
-              </a>
-            </li>
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link"> Hướng dẫn giao nhận </a>
-            </li>
-            <li class="footer__list-item">
-              <a href="" class="footer__list-link"> Điều khoản dịch vụ </a>
-            </li>
+            @if (count($policy) != 0)
+               @foreach ($policy as $item)
+                  @if ($item->is_type == 0)
+                    <li class="footer__list-item">
+                      <a href="/tin-tuc/{{ $item->link_url }}.html" class="footer__list-link">
+                        {{ $item->title }}
+                      </a>
+                    </li> 
+                  @endif              
+              @endforeach
+            @endif
           </ul>
         </div>
         <div class="footer__item">
@@ -113,51 +111,21 @@
           </div>
           <div class="footer-social">
             <ul class="footer-social__list">
+            @if (count($soclai) != 0)
+              @foreach ($soclai as $rowSoclai)
+                
               <li class="footer-social__item">
-                <a href="" class="footer-social__link">
+                <a href="{{ $rowSoclai->slug_link }}" class="footer-social__link">
                   <img
-                    src="/template/images/facebook.jpg"
+                    src="{{ $rowSoclai->thumb }}"
                     alt=""
                     class="footer-social__image"
                   />
                 </a>
               </li>
-              <li class="footer-social__item">
-                <a href="" class="footer-social__link">
-                  <img
-                    src="/template/images/Instagram.png"
-                    alt=""
-                    class="footer-social__image"
-                  />
-                </a>
-              </li>
-              <li class="footer-social__item">
-                <a href="" class="footer-social__link">
-                  <img
-                    src="/template/images/youtube.PNG"
-                    alt=""
-                    class="footer-social__image"
-                  />
-                </a>
-              </li>
-              <li class="footer-social__item">
-                <a href="" class="footer-social__link">
-                  <img
-                    src="/template/images/zalo.png"
-                    alt=""
-                    class="footer-social__image"
-                  />
-                </a>
-              </li>
-              <li class="footer-social__item">
-                <a href="" class="footer-social__link">
-                  <img
-                    src="/template/images/tiktok.PNG"
-                    alt=""
-                    class="footer-social__image"
-                  />
-                </a>
-              </li>
+
+              @endforeach
+            @endif
             </ul>
           </div>
         </div>
@@ -165,7 +133,7 @@
       <div class="footer__bottom">
         <ul class="footer__bottom-list">
           <li class="footer__bottom-item">
-            <a href="" class="footer__bottom-link">
+            <a href="#" class="footer__bottom-link">
               <img
                 src="/template/images/vísa.png"
                 alt=""
@@ -174,7 +142,7 @@
             </a>
           </li>
           <li class="footer__bottom-item">
-            <a href="" class="footer__bottom-link">
+            <a href="#" class="footer__bottom-link">
               <img
                 src="/template/images/mastercard.png"
                 alt=""
@@ -183,7 +151,7 @@
             </a>
           </li>
           <li class="footer__bottom-item">
-            <a href="" class="footer__bottom-link">
+            <a href="#" class="footer__bottom-link">
               <img
                 src="/template/images/momo.png"
                 alt=""
@@ -192,7 +160,7 @@
             </a>
           </li>
           <li class="footer__bottom-item">
-            <a href="" class="footer__bottom-link">
+            <a href="#" class="footer__bottom-link">
               <img
                 src="/template/images/zalopay.png"
                 alt=""
@@ -202,7 +170,7 @@
           </li>
 
           <li class="footer__bottom-item">
-            <a href="" class="footer__bottom-link">
+            <a href="#" class="footer__bottom-link">
               <img
                 src="/template/images/vanchuyen.jpg"
                 alt=""
@@ -233,23 +201,51 @@
 
 <div class="overlay detall__modal__overlay oh"></div>
 <div class="detall__modal oh">
-  <div class="detall__modal__container detall__modal__html">
-  
-  </div>
-  <span class="detall__modal__close">
+    <div class="detall__modal__container " >
+      <div class="detall__modal__wrapper" id="detall__container__image">  
+      </div>
+      <div class="detall__modal__wrapper">
+      <div class="detall__modal__wrapper__info" id="detall__info">
+
+      </div>
+
+      <div class="detall__container__add">
+        <div class="detall__container__add__qty">
+            <button class="detall__container__add__qty-btn btn minu">
+            <i class="fas fa-minus"></i>
+            </button>
+            <input
+            type="number"
+            value="1"
+            class="detall__container__add__qty-number"
+            id="qty"
+            />
+            <button class="detall__container__add__qty-btn btn plug">
+            <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        <input type="text" class="oh" id="cart_product_id" value="">
+        <button class="btn detall__container__add__btn" onClick="addCart()">
+            THÊM VÀO GIỞ HÀNG
+        </button>
+        </div> 
+      </div>
+    </div>
+    <span class="detall__modal__close">
     <i class="fas fa-times"></i>
-  </span>
-</div>
+    </span>
+  </div></div></div>
+  
 
 <button class="btn backtop">
   <i class="fa-solid fa-chevron-up"></i>
 </button>
 <div class="main-contact">
-  <a href="" class="main-contact__link">
+  <a href="#" class="main-contact__link">
     <img src="/template/images/phone.png" alt="" class="main-contact__image" />
   </a>
 
-  <a href="" class="main-contact__link">
+  <a href="#" class="main-contact__link">
     <img src="/template/images/zalo.png" alt="" class="main-contact__image" />
   </a>
 </div>

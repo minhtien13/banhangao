@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\product\productRequest;
-use App\Http\Services\menu\MenuService;
+use App\Http\Services\menu\menuService;
 use App\Http\Services\product\productService;
-use App\Models\c;
 use App\Models\product;
 use Illuminate\Http\Request;
 
@@ -18,7 +17,7 @@ class ProductController extends Controller
     public function __construct(productService $productService)
     {
         $this->productService = $productService;
-        $this->MenuService = new MenuService;
+        $this->MenuService = new menuService;
     }
     /**
      * Display a listing of the resource.

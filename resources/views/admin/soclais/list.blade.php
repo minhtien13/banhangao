@@ -1,0 +1,37 @@
+@extends('admin.main')
+
+@section('container')
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>TÊN</th>
+            <th>HÌNH</th>
+            <th>TRẠI THÁI</th>
+            <th>&nbsp;</th>
+        </tr>
+
+        @foreach ($data as $row)
+        <tr>
+            <td style="width: 20px;"> {{ $row->id }} </td>
+            <td> {{ $row->name }}</td>
+            <td>
+                <img src=" {{ $row->thumb }}" alt="" class="soclai__image">
+            </td>
+            <td>
+                {!! App\helpers\helper::staturs($row->is_active) !!}
+            </td>
+            <td>
+                <div class="main__table__delete">
+                    <a href="javascript:void(0)" onClick="deleteRow('/admin/soclai/remove',  {{ $row->id }})" class="main__table__delete__link main__table__delete__link--remove">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                    <a href="/admin/soclai/edit/{{ $row->id }}" class="main__table__delete__link main__table__delete__link--edit">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+       @endforeach
+
+    </table>
+@endsection
