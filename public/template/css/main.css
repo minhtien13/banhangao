@@ -2524,3 +2524,20 @@ body {
     margin-bottom: 3rem;
     font-size: 1.5rem;
 }
+
+/* acc */
+.user__main {
+    margin-top: 3rem;
+    min-height: 300px;
+}
+.user__main__container {
+    display: flex;
+}
+.user__main__sildebar {
+    padding: 5px;
+    width: 20%;
+}
+.user__main__home {
+    flex: 1;
+    padding: 5px;
+}

@@ -18,8 +18,11 @@ class LoginController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        if ($user) {
+        if (isset($_COOKIE['email'])) {
+            setcookie('email', '', time() - 3600, '/');
+        }
+        
+        if (Auth::user()) {
             return redirect()->route('admin');
         }
         
