@@ -26,6 +26,9 @@ Route::post('user/acc/login', [App\Http\Controllers\LoginController::class, 'log
 Route::get('user/acc/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('accLogout');
 
 Route::get('tai-khoan.html', [AccountController::class, 'account'])->name('account');
+Route::get('don-hang.html', [AccountController::class, 'order']);
+Route::get('doi-mat-khau.html', [AccountController::class, 'chang']);
+Route::get('dia-chi.html', [AccountController::class, 'address']);
 
 Route::middleware(['auth'])->group(function() {
     Route::prefix('admin')->group(function() {

@@ -27,7 +27,7 @@ class MainController extends Controller
     {
         $title = $request->input('search');
         return view('porducts.product', [
-            'title' => 'Trang chủ',
+            'title' => 'SHOPBASIC io vn',
             'product' => $this->productService->getShow($title),
             'staturs' => 0,
             'menuHome' => $this->menuService->getHome()

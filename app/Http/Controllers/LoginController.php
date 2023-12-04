@@ -12,9 +12,8 @@ class LoginController extends Controller
 {
     public function index() 
     {
-
         if (Auth::user()) {
-            if (Auth::check() || Auth::user()->level == 1) {
+            if (Auth::check() || Auth::user()->level == 1 || Auth::user()->level == 2) {
                 return redirect()->route('login');
             }
         }

@@ -5,6 +5,7 @@ namespace App\helpers;
 use App\Http\Services\cart\CartService;
 use App\Http\Services\menu\menuService;
 use App\Http\Services\product\productService;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
 class helper  
@@ -341,5 +342,12 @@ class helper
         }
         
         return $number;
+    }
+
+    public static function getAcc() 
+    {
+        $email = $_COOKIE['email'];
+        $user = User::where('email', $email)->select('name')->first();
+        return $user->name;
     }
 }

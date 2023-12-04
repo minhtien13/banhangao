@@ -3,28 +3,24 @@
     @include('bread')
 
     <div class="user__main">
-        <div class="container user__main__container">
-            <div class="user__main__sildebar">
-                <div class="user__main__sildebar-war">
-                    <ul class="user__main__sildebar-list">
-                        <li class="user__main__sildebar-item">
-                            <h3 class="user__main__sildebar__heading">
-                                Trang tài khoản
-                            </h3>
-                            <span class="user__main__sildebar-name">
-                                Đõ văn trung
-                            </span>
-                        </li>
-                        <li class="user__main__sildebar-item"><a href="#">Thông tin tài khoản</a></li>
-                        <li class="user__main__sildebar-item"><a href="#">Đơn hàng của bạn</a></li>
-                        <li class="user__main__sildebar-item"><a href="#">Đổi mật khẩu</a></li>
-                        <li class="user__main__sildebar-item"><a href="/user/acc/logout">Đăng xuất</a></li>
-                    </ul>
-                </div>
-            </div>
+       <div class="container user__main__container">
+          
+            @include('account.sildebar')
 
             <div class="user__main__home">
-                homes
+                <h3 class="user__main__home__heading">thông tin tài khoản</h3>
+
+                <div class="user__main__home__info">
+                    <span class="user__main__home__item">
+                        <b>Họ, tên:</b>
+                        {{ $account->name }}
+                    </span>
+
+                    <span class="user__main__home__item">
+                        <b>Gmail:</b>
+                        {{ $account->email }}
+                    </span>
+                </div>
             </div>
         </div>
     </div>
