@@ -38,7 +38,7 @@ class MainController extends Controller
     {
         $detall = $this->productService->getDetall(0, $slug);
         return view('porducts.detall', [
-            'title' => 'Trang chủ',
+            'title' => 'SHOPBASIC - ' . $detall->title,
             'detall' => $detall,
             'staturs' => 3,
             'product' => $this->productService->getListDetall($detall->menu_id, $detall->id)
@@ -48,7 +48,7 @@ class MainController extends Controller
     public function intro() 
     {
         return view('blogs.intro', [
-            'title' => 'giới thiệu',
+            'title' => 'giới thiệu - SHOPBASIC',
             'staturs' => 2,
             'intro' => $this->introService->show()
         ]);

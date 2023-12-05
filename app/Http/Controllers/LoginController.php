@@ -23,21 +23,34 @@ class LoginController extends Controller
         }
 
         return view('account.lgoin', [
-            'title' => 'đăng nhập',
+            'title' => 'trang đăng nhập',
             'staturs' => 2
         ]); 
     }
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ], [
+            'email.required' => 'Nhập dịa chỉ gmail của bạn',
+            'password.required' => 'Nhập mật khẩu'
+        ]);
+
         $email = $request->input('email');
         $password = $request->input('password');
 
         $acc = User::where('email', $email)->first();
+        
+        if (is_null($acc)) {
+            Session::flash('error', ' Tài khoản của bạn không tồn tại');
+            return redirect()->back();
+        }
 
         if (password_verify($password, $acc->password) == false) {
-        Session::flash('success', 'email hoặc password không dúng');
-        return redirect()->back();
+            Session::flash('error', ' Mật khâu không chính xác');
+            return redirect()->back();
         }  
 
         if ($acc->level == 1 || $acc->level == 2) {

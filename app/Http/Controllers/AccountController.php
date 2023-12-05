@@ -19,7 +19,7 @@ class AccountController extends Controller
         $user = User::where('email', $email)->first();
         
         return view('account.acc', [
-            'title' => 'Trang tài khoản',
+            'title' => 'trang tài khoản - SHOPBASIC',
             'staturs' => 2,
             'account' => $user
         ]);
@@ -43,7 +43,7 @@ class AccountController extends Controller
             return redirect()->route('accLogin');
         }
 
-        return view('account.order', [
+        return view('account.password', [
             'title' => 'Trang đổi mật khẩu',
             'staturs' => 2
         ]);
@@ -54,5 +54,10 @@ class AccountController extends Controller
         if (!isset($_COOKIE['email'])) {
             return redirect()->route('accLogin');
         }
+
+        return view('account.address', [
+            'title' => 'Trang dịa chỉ',
+            'staturs' => 2
+        ]);
     }
 }

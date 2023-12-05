@@ -6,6 +6,7 @@ use App\Http\Services\cart\CartService;
 use App\Http\Services\menu\menuService;
 use App\Http\Services\product\productService;
 use App\Models\User;
+use DateTime;
 use Illuminate\Support\Facades\Session;
 
 class helper  
@@ -349,5 +350,13 @@ class helper
         $email = $_COOKIE['email'];
         $user = User::where('email', $email)->select('name')->first();
         return $user->name;
+    }
+
+    public static function headleRank($time)
+    {
+        $datetime = new DateTime($time);
+        $week = array("Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy");
+        $w = (int)$datetime->format('w');
+        return $week[$w];
     }
 }

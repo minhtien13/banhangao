@@ -2491,7 +2491,7 @@ body {
 }
 
 /*# sourceMappingURL=main.css.map */
-.message__cart {
+.message__main {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
@@ -2500,14 +2500,18 @@ body {
     z-index: 500;
     width: 400px;
     height: 50px;
-    background-color: #007bff;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 1.6rem;
 }
-
+.message__main--error {
+    background-color: red !important;
+}
+.message__main--success {
+    background-color: #007bff !important;
+}
 @media screen and (max-width: 767.98px) {
     .backtop {
         bottom: 20px;
@@ -2597,4 +2601,25 @@ body {
 .user__main__home__item b {
     color: #333;
     font-weight: 700;
+}
+.user__main__home__order table {
+    width: 100%;
+}
+
+.user__main__home__order thead {
+    --br-color: #d3d3d3;
+    width: 100%;
+    border-top: 1px solid var(--br-color);
+    border-bottom: 1px solid var(--br-color);
+}
+.user__main__home__order th {
+    padding: 5px 0;
+    font-size: 1.3rem;
+    color: #000;
+    font-weight: 600;
+}
+.account__main__form-error {
+    margin-top: 6px;
+    font-size: 1.1rem;
+    color: red;
 }

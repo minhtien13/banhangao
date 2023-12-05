@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         return view('blogs.post', [
-            'title' => 'tin tức',
+            'title' => 'SHOPBASIC - trang tin tức',
             'post' => $this->postService->show()
         ]);
     }

@@ -9,17 +9,27 @@
     <div class="account">
         <div class="container">
           <div class="account__top">
-            <h3 class="account__top__heading">ĐĂNG NHẬP TÀI KHOẢN</h3>
+            <h3 class="account__top__heading">ĐĂNG KÝ TÀI KHOẢN</h3>
             <span class="account__top__txt">
-              Bạn có tài khoảng chưa ?
-              <a href="/dang-ky.html" class="account__top__txt-link">
-                đăng ký tại đây
+              Bạn dã có tài khoảng ? đăng nhập 
+              <a href="/dang-nhap.html" class="account__top__txt-link">
+                 tại đây
               </a>
             </span>
           </div>
 
           <div class="account__main">
-            <form action="/user/acc/login" method="POST" class="account__main__form">
+            <p class="account__main__label">thông tin cá nhân</p>
+            <form action="/user/acc/register" method="POST" class="account__main__form">
+              <div class="account__main__form-war">
+                <label for="" class="account__main__form-label">Họ tên <span class="danger">*</span> </label>
+                <input type="text" name="name" class="account__main__form-input" placeholder="Họ tên">
+
+                @if ($errors->get('name'))
+                    <p class="account__main__form-error">{{ $errors->first('name') }}</p>
+                @endif
+              </div>
+
               <div class="account__main__form-war">
                 <label for="" class="account__main__form-label">Gmail <span class="danger">*</span> </label>
                 <input type="email" name="email" class="account__main__form-input" placeholder="Gmail">
@@ -28,6 +38,7 @@
                     <p class="account__main__form-error">{{ $errors->first('email') }}</p>
                 @endif
               </div>
+
               <div class="account__main__form-war">
                 <label for="" class="account__main__form-label">Mật khẩu <span class="danger">*</span></label>
                 <input type="password" name="password" class="account__main__form-input" placeholder="Mật khẩu">

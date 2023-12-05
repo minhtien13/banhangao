@@ -14,22 +14,26 @@ use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadFileController;
-
+use App\Http\Controllers\RegisterController;
 
 Route::get('user/login', [LoginController::class, 'index'])->name('login');
 Route::post('user/login', [LoginController::class, 'login']);
 Route::get('user/logout', [MainController::class, 'logout']);
 
-
+// 
 Route::get('dang-nhap.html', [App\Http\Controllers\LoginController::class, 'index'])->name('accLogin');
 Route::post('user/acc/login', [App\Http\Controllers\LoginController::class, 'login']);
-Route::get('user/acc/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('accLogout');
+Route::get('dang-xuat.logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('accLogout');
 
 Route::get('tai-khoan.html', [AccountController::class, 'account'])->name('account');
 Route::get('don-hang.html', [AccountController::class, 'order']);
 Route::get('doi-mat-khau.html', [AccountController::class, 'chang']);
 Route::get('dia-chi.html', [AccountController::class, 'address']);
 
+// 
+Route::get('dang-ky.html', [RegisterController::class, 'index']);
+
+// 
 Route::middleware(['auth'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('main', [MainController::class, 'index'])->name('admin');

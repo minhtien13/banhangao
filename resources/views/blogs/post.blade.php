@@ -19,7 +19,7 @@
             </a>
             <div class="post__blog__media">
               <p class="post__blog__date">
-                <i class="fas fa-calendar-alt"></i> {{ date( "d/m/Y", strtotime($post->updated_at)) }}
+                <i class="fas fa-calendar-alt"></i> {{ App\helpers\helper::headleRank($post->updated_at) }}, {{ date( "d/m/Y", strtotime($post->updated_at)) }}
               </p>
               <p class="post__blog__date">
                 <i class="fas fa-clock"></i> Độc 2 phút

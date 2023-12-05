@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function product()
     {
         return view('product', [
-            'title' => 'tất cả sản phẩm',
+            'title' => 'tất cả sản phẩm - SHOPBASIC',
             'product' => $this->product->getShow(),
             'staturs' => 1 
         ]);
