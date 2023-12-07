@@ -2583,6 +2583,13 @@ body {
     margin-bottom: 6px;
 }
 
+.user__main__home__txt {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 2.2rem;
+    color: #000;
+}
+
 .user__main__home__heading {
     font-size: 1.7rem;
     font-weight: 700;
@@ -2622,4 +2629,13 @@ body {
     margin-top: 6px;
     font-size: 1.1rem;
     color: red;
+}
+.user__main__home__pass-btn {
+    padding: 1.2rem;
+    font-size: 1.5rem;
+    width: 150px;
+}
+
+.user__main__home__pass-war {
+    width: 55%;
 }

@@ -1,5 +1,8 @@
 @extends('main')
 @section('container')
+
+    @include('alert')
+
     @include('bread')
 
     <div class="user__main">

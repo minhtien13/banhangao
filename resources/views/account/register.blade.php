@@ -47,9 +47,10 @@
                     <p class="account__main__form-error">{{ $errors->first('password') }}</p>
                 @endif
               </div>
+
               @csrf
               <div class="account__main__form-war">
-                <button class="account__main__form-btn btn">Đăng nhập</button>
+                <button class="account__main__form-btn btn">Đăng ký</button>
               </div>
             </form>
 

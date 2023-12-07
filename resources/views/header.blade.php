@@ -38,19 +38,24 @@
           <div class="header__user-war">
             <ul class="header__user-list">
                 @if (!isset($_COOKIE['email']))
-                  <li class="header__user-item">
-                  <a href="/dang-nhap.html" class="header__user-link">Đăng nhập</a>
-                  </li>
-                @endif
+                    <li class="header__user-item">
+                      <a href="/dang-nhap.html" class="header__user-link">Đăng nhập</a>
+                    </li>
+                
+                    <li class="header__user-item">
+                      <a href="/dang-ky.html" class="header__user-link">Đăng ký</a>
+                    </li>
+                 @endif
 
-                <li class="header__user-item">
-                <a href="/dang-ky.html" class="header__user-link">Đăng ký</a>
-                </li>
 
                 @if (isset($_COOKIE['email']))
-                  <li class="header__user-item">
-                  <a href="/dang-xuat.logout" class="header__user-link">Đăng xuất</a>
-                  </li>
+                    <li class="header__user-item">
+                      <a href="/tai-khoan.html" class="header__user-link">Tài khoản</a>
+                    </li> 
+
+                    <li class="header__user-item">
+                      <a href="/dang-xuat.logout" class="header__user-link">Đăng xuất</a>
+                    </li>
                 @endif
 
             </ul>
@@ -179,19 +184,23 @@
             <div class="header__user-war">
               <ul class="header__user-list">
                 @if (!isset($_COOKIE['email']))
-                  <li class="header__user-item">
-                    <a href="/dang-nhap.html" class="header__user-link">Đăng nhập</a>
-                  </li>
+                    <li class="header__user-item">
+                        <a href="/dang-nhap.html" class="header__user-link">Đăng nhập</a>
+                    </li>
+                    <li class="header__user-item">
+                        <a href="/dang-ky.html" class="header__user-link">Đăng ký</a>
+                    </li>
                 @endif
                 
-                <li class="header__user-item">
-                  <a href="/dang-ky.html" class="header__user-link">Đăng ký</a>
-                </li>
+                
 
                 @if (isset($_COOKIE['email']))
-                  <li class="header__user-item">
-                    <a href="/dang-xuat.logout" class="header__user-link">Đăng xuất</a>
-                  </li>
+                    <li class="header__user-item">
+                        <a href="/tai-khoan.html" class="header__user-link">Tài khoản</a>
+                    </li> 
+                    <li class="header__user-item">
+                        <a href="/dang-xuat.logout" class="header__user-link">Đăng xuất</a>
+                    </li>
                 @endif
               </ul>
             </div>

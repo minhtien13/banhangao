@@ -32,7 +32,7 @@ class CartContoller extends Controller
     {
         $resuit = $this->cartService->getProduct();
         return view('carts.cart', [
-            'title' => 'giỏ hàng',
+            'title' => 'trang giỏ hàng',
             'cart' =>  Session::get('carts'),
             'data' => $resuit
         ]);
@@ -56,7 +56,7 @@ class CartContoller extends Controller
         }
 
         return view('carts.checkout', [
-            'title' => 'đặt hàng',
+            'title' => 'trang đặt hàng',
             'cart' =>  Session::get('carts'),
         ]); 
     }

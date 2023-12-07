@@ -27,11 +27,13 @@ Route::get('dang-xuat.logout', [App\Http\Controllers\LoginController::class, 'lo
 
 Route::get('tai-khoan.html', [AccountController::class, 'account'])->name('account');
 Route::get('don-hang.html', [AccountController::class, 'order']);
-Route::get('doi-mat-khau.html', [AccountController::class, 'chang']);
+Route::get('doi-mat-khau.html', [AccountController::class, 'pass']);
+Route::post('user/acc/change', [AccountController::class, 'chang']);
 Route::get('dia-chi.html', [AccountController::class, 'address']);
 
 // 
 Route::get('dang-ky.html', [RegisterController::class, 'index']);
+Route::post('user/acc/register', [RegisterController::class, 'store']);
 
 // 
 Route::middleware(['auth'])->group(function() {
