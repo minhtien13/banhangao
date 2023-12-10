@@ -13,8 +13,8 @@
                 @endif
 
                 @if (isset($_COOKIE['email']))
-                    <span class="mobile__user-name"> {{ App\helpers\helper::getacc('name') }} </span>
-                    <a href="/tai-khoan.html" class="mobile__user-username"> {{ App\helpers\helper::getacc('email') }} </a>
+                    <a href="/tai-khoan.html" class="mobile__user-name"> Tài khoản </a>
+                    <a href="/dang-xuat.logout" class="mobile__user-username"> Đăng xuất </a>
                 @endif
             </div>
         </div>

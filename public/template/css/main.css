@@ -429,13 +429,24 @@ body {
     }
 }
 
+.link__logo {
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
 .logo {
     width: 80px;
     height: 80px;
 }
 @media screen and (max-width: 767.98px) {
+    .link__logo {
+        margin-left: 12%;
+        position: relative;
+        height: 100%;
+        display: flex;
+        justify-content: end;
+    }
     .logo {
-        margin-left: 46px;
         width: 60px;
         height: 60px;
     }
@@ -501,6 +512,7 @@ body {
 .mobile__user-name {
     font-size: 1.6rem;
     line-height: 1.6;
+    color: #fff;
 }
 .mobile__user-username {
     font-size: 1.4rem;
@@ -2698,5 +2710,8 @@ body {
     }
     .user__main__home__info-war:first-child {
         width: 25%;
+    }
+    .user__main__home__info {
+        padding-bottom: 2rem;
     }
 }

@@ -63,9 +63,13 @@ $(".mobile__header-overlay").click(function () {
     $(".mobile__header-overlay").addClass("oh");
 });
 
-$(".header-right__btn").click(function () {
+$(".search__btn__down").click(function () {
     $(".search").removeClass("oh");
     $(".search__overlay").removeClass("oh");
+});
+$(".search__btn__up").click(function () {
+    $(".search").addClass("oh");
+    $(".search__overlay").addClass("oh");
 });
 $(".search__overlay").click(function () {
     $(".search").addClass("oh");
