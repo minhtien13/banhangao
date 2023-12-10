@@ -19,7 +19,10 @@
                     <div class="user__main__home__pass-war">
                         <form action="/user/acc/change" method="POST" class="account__main__form">
                             <div class="account__main__form-war">
-                                <label for="" class="account__main__form-label">Mật khẩu cũ <span class="danger">*</span></label>
+                                <label for="" class="account__main__form-label  
+                                        @if ($errors->get('password')) danger @endif">Mật khẩu cũ <span class="danger">*</span>
+                                </label>
+
                                 <input type="password" name="password" class="account__main__form-input" placeholder="Mật khẩu">
                 
                                 @if ($errors->get('password'))
@@ -28,7 +31,10 @@
                             </div>
 
                             <div class="account__main__form-war">
-                                <label for="" class="account__main__form-label">Mật khẩu mới <span class="danger">*</span></label>
+                                <label for="" class="account__main__form-label 
+                                        @if ($errors->get('password_new')) danger @endif">Mật khẩu mới <span class="danger">*</span>
+                                </label>
+
                                 <input type="password" name="password_new" class="account__main__form-input" placeholder="Mật khẩu mới">
                 
                                 @if ($errors->get('password_new'))
@@ -37,7 +43,9 @@
                             </div>
 
                             <div class="account__main__form-war">
-                                <label for="" class="account__main__form-label">Xác mật khẩu mới <span class="danger">*</span></label>
+                                <label for="" class="account__main__form-label
+                                    @if ($errors->get('password_confirmed')) danger @endif ">Xác mật khẩu mới <span class="danger">*</span>
+                                </label>
                                 <input type="password" name="password_confirmed" class="account__main__form-input" placeholder="Xác mật khẩu mới">
                             
                                 @if ($errors->get('password_confirmed'))

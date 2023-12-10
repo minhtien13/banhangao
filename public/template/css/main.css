@@ -2175,6 +2175,13 @@ body {
     padding-left: 6px;
 }
 
+@media screen and (max-width: 767.98px) {
+    .account__top__txt-link,
+    .account__top__txt {
+        font-size: 1.5rem;
+    }
+}
+
 .modal {
     position: fixed;
     top: 50%;
@@ -2582,7 +2589,29 @@ body {
     font-weight: 600;
     margin-bottom: 6px;
 }
-
+.user__main__home__info {
+    padding-top: 8px;
+    display: flex;
+    flex-direction: row;
+}
+.user__main__home__info-war {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user__main__home__info-war:first-child {
+    width: 20%;
+}
+.user__main__home__info-war:last-child {
+    flex: 1;
+    flex-direction: column;
+    align-items: start;
+}
+.user__main__home__info__avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 100rem;
+}
 .user__main__home__txt {
     font-size: 1.3rem;
     font-weight: 500;
@@ -2638,4 +2667,36 @@ body {
 
 .user__main__home__pass-war {
     width: 55%;
+}
+
+@media screen and (max-width: 767.98px) {
+    .user__main__container {
+        flex-direction: column;
+    }
+
+    .user__main__sildebar {
+        width: 100%;
+        border-right: none;
+        margin-bottom: 2rem;
+    }
+    .user__main__sildebar-list {
+        border-right: none;
+        border-bottom: 1px solid #3e3b3b;
+    }
+    .user__main__sildebar-item:last-child {
+        margin-bottom: 1.5rem;
+    }
+    .user__main__home__pass-war {
+        width: 100%;
+    }
+    .user__main__home__info__avatar {
+        width: 50px;
+        height: 50px;
+    }
+    .user__main__home__item {
+        margin-bottom: 5px;
+    }
+    .user__main__home__info-war:first-child {
+        width: 25%;
+    }
 }

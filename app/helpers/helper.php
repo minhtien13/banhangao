@@ -345,11 +345,12 @@ class helper
         return $number;
     }
 
-    public static function getAcc() 
+    public static function getAcc($key = 'name') 
     {
         $email = $_COOKIE['email'];
-        $user = User::where('email', $email)->select('name')->first();
-        return $user->name;
+        $user = User::where('email', $email)->select('name', 'email')->first();
+ 
+        return  $user[$key];
     }
 
     public static function headleRank($time)
