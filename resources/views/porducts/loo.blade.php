@@ -11,7 +11,7 @@
           <div class="product-list__ima">
             <img
               src="{{ $productItem->thumb }}"
-              alt=""
+              alt="SHOPBASIC io vn"
               class="product-list__image"
             />
             <img
