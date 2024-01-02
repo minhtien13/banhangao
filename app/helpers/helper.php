@@ -43,6 +43,8 @@ class helper
         return $html;
     }
 
+   
+
     public static function staturs($active)
     {
         return $active == 1 ? '<button type="button" class="btn main__active btn-success">Công khai</button>'
@@ -98,21 +100,21 @@ class helper
             if ($item['parent_id'] == 0) { 
                 if ($item['limited_edition'] == 0) {
                     $html .= '
-                        <section class="product">
+                      <section class="product">
                         <div class="container">
                             <div class="product__bar product__bar--flex">
                             <div
                             class="product__bar-heading product__select-heading down"
-                            id=""
+                           
                             >
-                            <h2>'. $item['name'] .'</h2>
+                            <h2 id="product__bar__h2__'. $item['id'] .'">'. $item['name'] .'</h2>
                             <span class="product__bar-heading-icon">R</span>
                             <span class="product__select-icon">
                                 <i
                                 class="product__select-down on-show fa-solid fa-chevron-down"
                                 ></i>
                             </span>
-                            <ul class="product__select__list">
+                            <ul class="product__select__list" id="product__select__list__' . $item['id'] . '">
                                ' . self::headMenu($item['id']) .'
                             </ul>
                             </div>
@@ -120,18 +122,9 @@ class helper
                     
                     ';
 
-                    $html .= self::item($item['id']);
+                    $html .= self::item($item['id'], $item['name']);
                     
-                    $html .= '
-                    
-                        <div class="product__bottom" id="product__bottom__' . $item['id'] . '">
-                            <a href="/danh-sach/' . $item['id'] . '-' . \Str::slug($item['name']) . '.html" class="btb product__bottom-link"
-                            >Xem tất cả <i class="fa-solid fa-chevron-right"></i>
-                            </a>
-                        </div>
-                        </div>
-                        </section>
-                        ';
+                    $html .= ' </section>';
                 }
 
                 if ($item['limited_edition'] == 1) {
@@ -140,7 +133,7 @@ class helper
                             <div class="container">
                                 <div class="product__bar">
                                 <div class="product__bar-heading product__bar--flex">
-                                    <h2 class="product__bar-heading__txt product__bar-heading__flex">
+                                    <h2  id="product__bar__h2__'. $item['id'] .'" class="product__bar-heading__txt product__bar-heading__flex">
                                         ' . $item['name'] . ' BASIC<span class="product__bar-heading-icon">R</span>
                                     </h2>
                                     <div
@@ -155,7 +148,7 @@ class helper
                                         </span>
                                         </div>
                             
-                                        <ul class="product__select__list" >
+                                        <ul class="product__select__list" id="product__select__list__' . $item['id'] . '" >
                                             ' . self::headMenu($item['id']) .'
                                         </ul>
                                     </div>
@@ -164,18 +157,9 @@ class helper
 
                             ';
 
-                            $html .= self::item($item['id']);
+                            $html .= self::item($item['id'], $item['name']);
                             
-                            $html .= '                        
-                                <div class="product__bottom" id="product__bottom__' . $item['id'] . '">
-                                    <a href="/danh-sach/' . $item['id'] . '-' . \Str::slug($item['name']) . '.html" class="btb product__bottom-link"
-                                    >Xem tất cả <i class="fa-solid fa-chevron-right"></i>
-                                    </a>
-                                </div> 
-                            </div>
-                        </section>
-                    
-                    ';
+                            $html .= '</section>';
                 }
             }
         }
@@ -183,57 +167,83 @@ class helper
         return $html;
     }
 
-    public static function item($menuId)
+    public static function item($menuId, $nameMenu)
     {
 
         $html = '';
         $product = new productService;
         $data = $product->getListMenu($menuId);
 
-        $html .= '<ul class="product-list" id="product-list__' . $menuId .'">';
-        foreach ($data as $row) {
-            $html .= '
-                    <li class="product-list__item">
-                        <div class="product-list__ima">
-                            <img
-                            src="'. $row['thumb'] .'"
-                            alt=""
-                            class="product-list__image"
-                            />
-                            <img
-                            src="/template/images/logo.jpg"
-                            alt=""
-                            class="product-list__logo"
-                            />
+        if (count($data) != 0) {
+            $html .= '<ul class="product-list" id="product-list__' . $menuId .'">';
+            foreach ($data as $row) {
+                $html .= '
+                        <li class="product-list__item">
+                            <div class="product-list__ima">
+                                <img
+                                src="'. $row['thumb'] .'"
+                                alt=""
+                                class="product-list__image"
+                                />
+                                <img
+                                src="/template/images/logo.jpg"
+                                alt=""
+                                class="product-list__logo"
+                                />
 
-                            <div class="product-list__active">
-                            <a href="/san-pham/'. $row['slug_url'] .'.html" class="product-list__active-link">
-                                <i class="fas fa-water"></i>
-                            </a>
-                            <a
-                                href="javascript:void(0)"
-                                onclick="loadDetall('. $row['id'] .')"
-                                class="product-list__active-link"
-                            >
-                                <i class="fas fa-eye"></i>
-                            </a>
+                                <div class="product-list__active">
+                                <a href="/san-pham/'. $row['slug_url'] .'.html" class="product-list__active-link">
+                                     <i class="fas fa-sliders-h"></i>
+                                </a>
+                                <a
+                                    href="javascript:void(0)"
+                                    onclick="loadDetall('. $row['id'] .')"
+                                    class="product-list__active-link"
+                                >
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="product-list__content">
-                            <a href="/san-pham/'. $row['slug_url'] .'.html" class="product-list__title">
-                            <h3>'. $row['title'] .'</h3>
-                            </a>
-                            '. self::headPrice($row['price'], $row['price_sale']) .'
-                            <span
-                            class="product-list__color"
-                            style="--product-color: '. $row['product_color'] .'"
-                            ></span>
-                        </div>
-                    </li>
+                            <div class="product-list__content">
+                                <a href="/san-pham/'. $row['slug_url'] .'.html" class="product-list__title">
+                                <h3>'. $row['title'] .'</h3>
+                                </a>
+                                '. self::headPrice($row['price'], $row['price_sale']) .'
+                                <span
+                                class="product-list__color"
+                                style="--product-color: '. $row['product_color'] .'"
+                                ></span>
+                            </div>
+                        </li>
+                    ';
+            }
+
+            $html .= '</ul>';
+
+            $html .= '
+                <div class="product__bottom" id="product__bottom__' . $menuId . '">
+                        <a href="/danh-sach/' . $menuId . '-' . \Str::slug($nameMenu) . '.html" class="btb product__bottom-link"
+                        >Xem tất cả <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>';
+
+            $html .= '<div class="product__is__emty oh" id="product__is__emty__'.  $menuId . '">
+                        <span class="product___is__emty-txt">
+                        Đang cập nhật sản phẩm 
+                        </span>
+                    </div>
                 ';
         }
-
-        $html .= '</ul>';
+    
+        if (count($data) == 0) {
+            $html .= '<div class="product__is__emty" id="product__is__emty__'.  $menuId . '">
+                        <span class="product___is__emty-txt">
+                        Đang cập nhật sản phẩm 
+                        </span>
+                    </div>
+                ';
+        }
         
         return $html;
     }
@@ -246,14 +256,14 @@ class helper
 
         foreach ($data as $row) {
             $html .= '
-                <li class="product__select__list-item">
-                <a
-                    href="javascript:void(0)" onClick="loadProductList(' . $row['id'] . ', ' . $menuId . ')"
-                    class="product__select__list-link product__select__list-link--active"
-                    >'. $row['name'] .'<span class="product__bar-heading-icon"
-                    >R</span
-                    ></a
-                >
+                <li class="product__select__list-item" id="link__id__' . $row['id'] . '">
+                    <span
+                         onClick="loadProductList(' . $row['id'] . ', ' . $menuId . ', \' ' . $row['name'] . '\')"
+                        class="product__select__list-link product__select__list-link--active"  >
+                        '. $row['name'] .'
+                        <span class="product__bar-heading-icon"
+                        >R</span>
+                    </span>
                 </li>
             ';
         }

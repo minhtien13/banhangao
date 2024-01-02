@@ -440,7 +440,7 @@ body {
 }
 @media screen and (max-width: 767.98px) {
     .link__logo {
-        margin-left: 12%;
+        margin-left: 13%;
         position: relative;
         height: 100%;
         display: flex;
@@ -602,6 +602,9 @@ body {
         scroll-snap-align: start;
         flex: 0 0 80%;
     }
+    .cuopons__list-item:first-child {
+        margin-left: 4px;
+    }
     .cuopons__list-title {
         font-size: 1.6rem;
         margin-bottom: 6px;
@@ -720,13 +723,21 @@ body {
     transform: translateX(-50%);
     z-index: -20;
     display: flex;
-    padding: 8px 6px;
     background-color: #fff;
     width: 90px;
     opacity: 0;
     transition: all linear 0.3s;
     border-radius: 5px;
     overflow: hidden;
+}
+.product-list__active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    border-right: 1px solid #2e2e2e;
 }
 .product-list__active-link {
     display: flex;
@@ -735,6 +746,16 @@ body {
     width: 50%;
     justify-content: center;
     align-items: center;
+    padding: 8px 6px;
+}
+.product-list__active-link:first-child {
+    padding-right: 0;
+}
+.product-list__active-link:hover {
+    background-color: #d3d3d3;
+}
+.product-list__active-link:last-child {
+    padding-left: 0;
 }
 .product-list__item {
     padding: 0 15px;
@@ -888,6 +909,16 @@ body {
 .product__select__list-link--active,
 .product__select__list-link:hover {
     color: #000;
+}
+.product__is__emty {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product___is__emty-txt {
+    font-size: 2rem;
 }
 @media screen and (max-width: 767.98px) {
     .product__select__list {
@@ -1665,9 +1696,13 @@ body {
     .detall .product__bar-heading {
         font-size: 2rem;
     }
+    .detall__container__add__btn:hover,
     .detall__container__add__btn {
         padding: 10px 5px;
         font-size: 1.3rem;
+        background: none;
+        border-color: #919191;
+        color: #919191;
     }
 }
 .cart {
@@ -2022,6 +2057,11 @@ body {
 .search__main__dropdown-text:hover {
     background-color: #007bff;
     color: #fff;
+}
+.search__message {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: #766d6d;
 }
 @media screen and (max-width: 767.98px) {
     .search__main {
@@ -2681,6 +2721,71 @@ body {
     width: 55%;
 }
 
+/* alert */
+.message__addcart__overlay {
+    z-index: 500;
+    animation: facemain linear 0.5s;
+}
+.message__addcart {
+    position: fixed;
+    width: 400px;
+    height: 220px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 0;
+    z-index: 600;
+    animation: facemain linear 1s;
+    display: flex;
+    flex-direction: column;
+}
+.message__addcart__war {
+    height: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.message__addcart__txt {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.message__addcart__bottom {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: end;
+    padding-right: 10px;
+    flex: 1;
+}
+.message__addcart__btn {
+    min-width: 92px;
+    background-color: #2e2e2e;
+    padding: 8px 10px;
+    color: #000;
+    text-align: center;
+}
+.message__addcart__close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+}
+
+.message__addcart__btn:first-child {
+    background-color: #ff0f0f;
+    color: #fff;
+}
+.message__addcart__btn:last-child {
+    background-color: #c5c1c1;
+    color: #fff;
+}
+
 @media screen and (max-width: 767.98px) {
     .user__main__container {
         flex-direction: column;
@@ -2713,5 +2818,20 @@ body {
     }
     .user__main__home__info {
         padding-bottom: 2rem;
+    }
+
+    .message__addcart {
+        width: 90%;
+        height: 170px;
+    }
+    .message__addcart__war {
+        height: 75%;
+    }
+    .message__addcart__bottom {
+        align-items: center;
+        padding: 0 5px;
+    }
+    .message__addcart__txt {
+        font-size: 1.5rem;
     }
 }

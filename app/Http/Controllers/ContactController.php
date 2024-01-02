@@ -17,7 +17,7 @@ class ContactController extends Controller
     public function index()
     {
         return view('blogs.contact', [
-            'title' => 'SHOPBASIC - trang liên hệ',
+            'title' => 'trang liên hệ - SHOPBASIC',
             'staturs' => 1,
             'data' => $this->contactService->show()
         ]);

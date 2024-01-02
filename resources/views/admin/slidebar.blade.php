@@ -51,6 +51,7 @@
           </li>
         </ul>
       </li>
+      
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fab fa-product-hunt"></i>
@@ -74,6 +75,56 @@
           </li>
         </ul>
       </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-link"></i>
+          <p>
+            kết nối mạng xa hội
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="/admin/soclai/add" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Tạo mới kết nối</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/soclai/list" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Danh sách kết nối</p>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+     
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fas fa-pencil-alt"></i>
+          <p>
+            Chính sách
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="/admin/policy/add" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Tạo mới chính sách</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/policy/list" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Danh sách chính sách</p>
+            </a>
+          </li>          
+        </ul>
+      </li>
+      
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-shopping-cart"></i>
@@ -91,6 +142,8 @@
           </li>
         </ul>
       </li>
+
+
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-sign-out-alt"></i>

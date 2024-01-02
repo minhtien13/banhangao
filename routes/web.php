@@ -14,7 +14,13 @@ use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadFileController;
+use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('run', function(){
+    Artisan::call('storage:link');
+});
 
 Route::get('user/login', [LoginController::class, 'index'])->name('login');
 Route::post('user/login', [LoginController::class, 'login']);
@@ -100,6 +106,15 @@ Route::middleware(['auth'])->group(function() {
             Route::get('view/{id}', [CartController::class, 'cart']);
             Route::DELETE('remove', [CartController::class, 'destroy']);
         });
+
+        Route::prefix('account')->group(function() {
+            Route::get('list', [UserController::class, 'index']);
+            Route::get('contomer', [UserController::class, 'contomer']);
+            Route::get('add', [UserController::class, 'create']);
+            Route::post('add', [UserController::class, 'store']);
+            Route::DELETE('remove', [UserController::class, 'destroy']);
+        });
+
         // 
         Route::prefix('product')->group(function() {
             Route::get('add', [ProductController::class, 'create']);
@@ -114,6 +129,7 @@ Route::middleware(['auth'])->group(function() {
 });
 
 Route::get('/', [App\Http\Controllers\MainController::class, 'index']);
+Route::post('load-menu-first', [App\Http\Controllers\MainController::class, 'loadMenuFirst']);
 Route::get('san-pham/{slug}.html', [App\Http\Controllers\MainController::class, 'detall']);
 Route::get('gioi-thieu.html', [App\Http\Controllers\MainController::class, 'intro']);
 Route::get('search', [App\Http\Controllers\MainController::class, 'search']);
@@ -125,6 +141,7 @@ Route::get('lien-he.html', [App\Http\Controllers\ContactController::class, 'inde
 
 Route::get('san-pham.html', [App\Http\Controllers\ProductController::class, 'product']);
 Route::post('load-product-list', [App\Http\Controllers\ProductController::class, 'loadProductList']);
+Route::post('product-select', [App\Http\Controllers\ProductController::class, 'productSelect']);
 Route::post('load-detall', [App\Http\Controllers\ProductController::class, 'loadDetall']);
 Route::get('danh-sach/{id}-{slug}.html', [App\Http\Controllers\ProductController::class, 'productList']);
 Route::get('danh-muc/{id}-{slug}.html', [App\Http\Controllers\ProductController::class, 'productListMenu']);

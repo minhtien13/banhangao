@@ -21,7 +21,7 @@ class CartContoller extends Controller
     {
         $resuit = $this->cartService->add($request);
 
-       if ($resuit) {
+        if ($resuit) {
             return response()->json(['error' => false, 'message' => 'thêm vào giỏ thành công']);
         }
         

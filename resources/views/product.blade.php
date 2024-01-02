@@ -53,7 +53,5 @@
   </section>
 
   @include('porducts.loo')
-
-
   
   @endsection

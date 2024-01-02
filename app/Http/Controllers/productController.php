@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         return view('product', [
             'title' => 'tất cả sản phẩm - SHOPBASIC',
-            'product' => $this->product->getShow(),
+            'product' => $this->product->getShow('', 30),
             'staturs' => 1 
         ]);
     }
@@ -68,5 +68,13 @@ class ProductController extends Controller
             'product' => $this->product->getListMenu($id),
             'staturs' => 1 
         ]);
+    }
+
+    public function productSelect(Request $request)
+    {
+        $num = $request->input('num');
+        $data = $this->product->productSelect($num);
+
+        return response()->json(['error' => false, 'data' => $data]);
     }
 }

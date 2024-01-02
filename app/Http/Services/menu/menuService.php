@@ -55,4 +55,17 @@ class menuService
     {
         return Menu::where('parent_id', $parentId)->where('is_active', 1)->get();
     }
+
+    public function GetMenuFirstHome($id, $parentId = 0)
+    {
+        $data = Menu::where('parent_id', $parentId)->select('id', 'name')->get();
+        $first = Menu::where('id', $parentId)->select('id', 'name')->first();
+
+        $data[] = [
+            'name' => $first->name,
+            'id' => $first->id,
+        ];
+        
+        return $data;
+    }
 }

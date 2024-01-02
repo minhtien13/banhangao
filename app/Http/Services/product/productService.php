@@ -64,11 +64,18 @@ class productService
 
     public function getShow($title = '' ,$page = 10)
     {
-       return product::orderByDesc('id')
+        if ($title == '') {
+            return product::orderByDesc('id')
+                ->where('is_active', 1)
+                ->select('title','slug_url', 'thumb', 'price', 'price_sale', 'id', 'product_color')
+                ->paginate($page);
+        }
+
+         return product::orderByDesc('id')
                 ->where('is_active', 1)
                 ->where('title', 'LIKE', '%' . $title . '%')
                 ->select('title','slug_url', 'thumb', 'price', 'price_sale', 'id', 'product_color')
-                ->paginate($page);
+                ->get();
     }
 
     public function getListMenu($menuId = 0, $id = 0) {
@@ -100,5 +107,24 @@ class productService
     public function search()
     {
         return product::select('title', 'id')->where('is_active', 1)->get();
+    }
+
+    public function productSelect($num)
+    {
+        if ($num == 1) {
+            return product::where('price_sale', 0)->orderByDesc('price')->get();
+        }
+
+        if ($num == 2) {
+            return product::where('price_sale', 0)->orderBy('price', 'ASC')->get();
+        }
+
+        if ($num == 4) {
+            return product::where('price_sale', '!=', 0)->orderByDesc('price_sale')->get();
+        }
+
+        if ($num == 3) {
+            return product::orderByDesc('id')->get();
+        }
     }
 }

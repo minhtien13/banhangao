@@ -23,7 +23,7 @@ class LoginController extends Controller
         }
 
         return view('account.lgoin', [
-            'title' => 'trang đăng nhập',
+            'title' => 'trang đăng nhập - SHOPBASIC',
             'staturs' => 2
         ]); 
     }

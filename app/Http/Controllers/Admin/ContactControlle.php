@@ -7,6 +7,7 @@ use App\Http\Services\contact\contactService;
 use App\Models\c;
 use App\Models\contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactControlle extends Controller
 {
@@ -23,6 +24,8 @@ class ContactControlle extends Controller
      */
     public function index()
     {
+        if (Auth::user()->level != 1) return redirect()->route('admin');
+        
         return view('admin.contacts.list', [
             'title' => 'danh sách liên hệ',
             'data' => $this->contactService->get()
@@ -36,6 +39,8 @@ class ContactControlle extends Controller
      */
     public function create()
     {
+        if (Auth::user()->level != 1) return redirect()->route('admin');
+
         return view('admin.contacts.add', [
             'title' => 'tạo liên hệ'
         ]);
@@ -49,7 +54,10 @@ class ContactControlle extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->level != 1) return redirect()->route('admin');
+
         $resuit = $this->contactService->insert($request);
+       
         if ($resuit) {
             return redirect('/admin/contact/list');
         }
@@ -64,6 +72,8 @@ class ContactControlle extends Controller
      */
     public function edit(contact $id)
     {
+        if (Auth::user()->level != 1) return redirect()->route('admin');
+
         return view('admin.contacts.edit', [
             'title' => 'cập nhật liên hệ',
             'data' => $id
@@ -79,6 +89,8 @@ class ContactControlle extends Controller
      */
     public function update(Request $request, contact $id)
     {
+        if (Auth::user()->level != 1) return redirect()->route('admin');
+
         $resuit = $this->contactService->update($id, $request);
         if ($resuit) {
             return redirect('/admin/contact/list');
@@ -94,6 +106,8 @@ class ContactControlle extends Controller
      */
     public function destroy(Request $request)
     {
+        if (Auth::user()->level != 1) return redirect()->route('admin');
+        
         $resuit = $this->contactService->destroy($request);
         if ($resuit) {
             return response()->json(['error' => false, 'message' => 'Bạn đã xóa liên hệ thành công']);

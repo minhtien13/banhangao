@@ -4,7 +4,7 @@ $.ajaxSetup({
     },
 });
 
-function loadProductList(id, menuId) {
+function loadProductList(id, menuId, name) {
     $.ajax({
         type: "POST",
         url: "/load-product-list",
@@ -13,51 +13,106 @@ function loadProductList(id, menuId) {
         success: function (resuit) {
             var html = "";
             if (resuit.error == false) {
-                resuit.data.forEach(function (row, key) {
-                    html += `
-                    <li class="product-list__item">
-                        <div class="product-list__ima">
-                            <img src="${
-                                row["thumb"]
-                            }" alt="" class="product-list__image">
-                            <img src="/template/images/logo.jpg" alt="" class="product-list__logo">
+                if (resuit.data.length != 0) {
+                    html += rederItemProduct(resuit.data);
+                    var link = `
+                            <a href="/danh-sach/${id}-ao-khoac.html" class="btb product__bottom-link">
+                                Xem tất cả <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                    `;
 
-                            <div class="product-list__active">
-                            <a href="/san-pham/${
-                                row["slug_url"]
-                            }.html" class="product-list__active-link">
-                                <i class="fas fa-water"></i>
-                            </a>
-                            <a href="javascript:void(0)" onclick="loadDetall(${
-                                row["id"]
-                            })" class="product-list__active-link">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            </div>
-                        </div>
-                        <div class="product-list__content">
-                            <a href="/san-pham/${
-                                row["slug_url"]
-                            }.html" class="product-list__title">
-                            <h3>${row["title"]}</h3>
-                            </a>
-                            ${price(row["price"], row["price_sale"])}
-                            <span class="product-list__color" style="--product-color: ${
-                                row["product_color"]
-                            }"></span>
-                        </div>
-                    </li>
-                `;
-                });
+                    $("#product__is__emty__" + menuId).addClass("oh");
+                    $("#product-list__" + menuId).removeClass("oh");
+                    $("#product-list__" + menuId).html(html);
 
-                var link = `
-                <a href="/danh-sach/${id}-ao-khoac.html" class="btb product__bottom-link">Xem tất cả <i class="fa-solid fa-chevron-right"></i>
-                                </a>
-                `;
-                $("#product-list__" + menuId).html(html);
-                $("#product__bottom__" + menuId).html(link);
+                    $("#product__bottom__" + menuId).removeClass("oh");
+                    $("#product__bottom__" + menuId).html(link);
+                } else {
+                    $("#product-list__" + menuId).addClass("oh");
+                    $("#product__bottom__" + menuId).addClass("oh");
+                    $("#product__is__emty__" + menuId).removeClass("oh");
+                }
             } else {
                 alert(resuit.message);
+            }
+        },
+    });
+
+    // load menu lại/reset menu
+    loadMenu(menuId, id);
+}
+
+function rederItemProduct(data) {
+    var html = "";
+    data.forEach(function (row, key) {
+        html += `
+            <li class="product-list__item">
+                <div class="product-list__ima">
+                    <img src="${
+                        row["thumb"]
+                    }" alt="SHOPBASIC io vn" class="product-list__image">
+                    
+                    <img src="/template/images/logo.jpg" alt="SHOPBASIC io vn" class="product-list__logo">
+
+                    <div class="product-list__active">
+                    <a href="/san-pham/${
+                        row["slug_url"]
+                    }.html" class="product-list__active-link">
+                         <i class="fas fa-sliders-h"></i> 
+                    </a>
+                    <a href="javascript:void(0)" onclick="loadDetall(${
+                        row["id"]
+                    })" class="product-list__active-link">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    </div>
+                </div>
+                <div class="product-list__content">
+                    <a href="/san-pham/${
+                        row["slug_url"]
+                    }.html" class="product-list__title">
+                    <h3>${row["title"]}</h3>
+                    </a>
+                    ${price(row["price"], row["price_sale"])}
+                    <span class="product-list__color" style="--product-color: ${
+                        row["product_color"]
+                    }"></span>
+                </div>
+            </li>
+         `;
+    });
+
+    return html;
+}
+
+function loadMenu(menuId, id) {
+    var title = "";
+
+    $.ajax({
+        type: "POST",
+        url: "/load-menu-first",
+        data: { id, menu_id: menuId },
+        dataType: "JSON",
+        success: function (response) {
+            var item = "";
+            if (response.error == false) {
+                response.data.forEach((row) => {
+                    if (row.id != id) {
+                        item += `<li class="product__select__list-item" id="link__id__${row.id}">
+                                    <span onclick="loadProductList(${row.id}, ${menuId}, ' ${row.name}')" class="product__select__list-link product__select__list-link--active">
+                                        ${row.name}
+                                        <span class="product__bar-heading-icon">R</span>
+                                    </span>
+                                </li>`;
+                    }
+
+                    if (row.id == id) {
+                        title += row.name;
+                    }
+                });
+
+                $("#product__bar__h2__" + menuId).text(title);
+                $("#product__select__list__" + menuId).html(item);
             }
         },
     });
@@ -67,24 +122,18 @@ function price(priceOld = 0, priceSale = 0) {
     var html = "";
 
     if (priceOld == 0 && priceSale == 0) {
-        html += `<a href="" class="product-list__price">Liên Hệ</a>`;
+        html += `<a href="/lien-he.html" class="product-list__price">Liên Hệ</a>`;
     }
 
     if (priceOld != 0 && priceSale == 0) {
         html += `<span class="product-list__price">
-         ${priceOld.toLocaleString("vi", {
-             style: "currency",
-             currency: "VND",
-         })}
+              ${convertPrice(priceOld)}
         </span>`;
     }
 
     if (priceOld != 0 && priceSale != 0) {
         html += `<span class="product-list__price">
-         ${priceSale.toLocaleString("vi", {
-             style: "currency",
-             currency: "VND",
-         })}
+             ${convertPrice(priceSale)}
         </span>`;
     }
 
@@ -94,6 +143,13 @@ function price(priceOld = 0, priceSale = 0) {
 function addCart(staturs = 0) {
     var cart_id = $("#cart_product_id").val();
     var cart_qty = $("#qty").val();
+    if (cart_id == 0) {
+        alert(
+            "sản phẩm này bạn không thể thêm vào giỏ được xin vui lòng liên hệ với shop"
+        );
+        $(".detall__container__add").addClass("oh");
+        return false;
+    }
 
     $.ajax({
         type: "POST",
@@ -106,12 +162,11 @@ function addCart(staturs = 0) {
                     window.location.replace("/gio-hang.html");
                     return false;
                 }
-                if (confirm("Bạn có muốn vào giỏ hàng kiểm tra không?")) {
-                    window.location.replace("/gio-hang.html");
-                } else {
-                    alert(response.message);
-                    loadCart();
-                }
+
+                $(".message__addcart__overlay").removeClass("oh");
+                $(".message__addcart").removeClass("oh");
+                $(".detall__modal__overlay").addClass("oh");
+                $(".detall__modal").addClass("oh");
             } else {
                 alert(response.message);
             }
@@ -119,16 +174,31 @@ function addCart(staturs = 0) {
     });
 }
 
-function loadCart() {
-    $.ajax({
-        type: "POST",
-        url: "cart/qty",
-        dataType: "JSON",
-        success: function (response) {
-            $(".header__cart-qty").text(response.qty);
-        },
-    });
+function addCartAlert(status = 0) {
+    $(".message__addcart__overlay").addClass("oh");
+    $(".message__addcart").addClass("oh");
 
+    if (status == 1) {
+        loadCartQty();
+        window.location = "/gio-hang.html";
+    } else {
+        loadCart();
+    }
+}
+
+$("#active__cart__view").click(() => {
+    addCartAlert(1);
+});
+
+$(".addcart__close").click(() => {
+    addCartAlert();
+});
+
+function loadCart() {
+    // qty
+    loadCartQty();
+
+    // reder html cart
     $.ajax({
         type: "POST",
         url: "cart/item",
@@ -136,6 +206,17 @@ function loadCart() {
         success: function (response) {
             $("#header__cart__dropdown__2").html(response.data);
             $("#header__cart__dropdown__1").html(response.data);
+        },
+    });
+}
+
+function loadCartQty() {
+    $.ajax({
+        type: "POST",
+        url: "cart/qty",
+        dataType: "JSON",
+        success: function (response) {
+            $(".header__cart-qty").text(response.qty);
         },
     });
 }
@@ -162,8 +243,11 @@ function loadDetall(id = 0) {
 }
 
 function renderDetall(data) {
+    var productId = data.price == 0 && data.price_sale == 0 ? 0 : data.id;
+
     $(".detall__container__add__qty-number").val(1);
-    $("#cart_product_id").val(data.id);
+    $("#cart_product_id").val(productId);
+
     var img = `
         <div class="detall__container__slider__left">
         <ul class="detall__container__slider__left__list">
@@ -253,7 +337,9 @@ function renderDetall(data) {
     $("#detall__info").html(info);
 
     if (data.price == 0 && data.price_sale == 0) {
-        $(".detall__container__add").remove();
+        $(".detall__container__add").addClass("oh");
+    } else {
+        $(".detall__container__add").removeClass("oh");
     }
 }
 
@@ -266,19 +352,13 @@ function detallPrice(priceOld = 0, priceSale = 0) {
 
     if (priceOld != 0 && priceSale == 0) {
         html += `<span class="detall__container__price">
-         ${priceOld.toLocaleString("vi", {
-             style: "currency",
-             currency: "VND",
-         })}
+              ${convertPrice(priceOld)}
         </span>`;
     }
 
     if (priceOld != 0 && priceSale != 0) {
         html += `<span class="detall__container__price">
-         ${priceSale.toLocaleString("vi", {
-             style: "currency",
-             currency: "VND",
-         })}
+             ${convertPrice(priceSale)}
         </span>`;
     }
 
@@ -307,6 +387,13 @@ function deleteCart(id = 0, staturs = 0) {
             }
         },
     });
+}
+
+function convertPrice(price) {
+    return Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "VND",
+    }).format(price);
 }
 
 let data = [];
@@ -356,3 +443,19 @@ function searchs(data) {
 
     return html;
 }
+
+$("#filter_product").change(function () {
+    var num = $(this).val();
+
+    $.ajax({
+        type: "POST",
+        url: "product-select",
+        data: { num },
+        dataType: "JSON",
+        success: function (response) {
+            var html = rederItemProduct(response.data);
+
+            $("#product_item_add").html(html);
+        },
+    });
+});

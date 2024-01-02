@@ -3,7 +3,7 @@
     
       @include('bar')
 
-      <ul class="product-list">
+      <ul class="product-list" id="product_item_add">
         
         @foreach ($product as $productItem)
           
@@ -14,6 +14,7 @@
               alt="SHOPBASIC io vn"
               class="product-list__image"
             />
+
             <img
               src="/template/images/logo.jpg"
               alt=""
@@ -22,7 +23,7 @@
 
             <div class="product-list__active">
               <a href="/san-pham/{{ $productItem->slug_url }}.html" class="product-list__active-link">
-                <i class="fas fa-water"></i>
+                <i class="fas fa-sliders-h"></i>
               </a>
               <a
                 href="javascript:void(0)"

@@ -44,7 +44,7 @@
           <input
             type="email"
             class="admin__main__form-input"
-            placeholder="Gmail / số điện thoại"
+            placeholder="Gmail / tài khoản"
             name="email"
           />
           <input

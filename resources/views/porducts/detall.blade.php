@@ -14,11 +14,11 @@
                       <img src="/template/images/ao3.jpg" alt="" class="detall__container__slider__left__list-image">
                     </a>
                   </li>
-                  <li class="detall__container__slider__left__list-item">
+                  {{-- <li class="detall__container__slider__left__list-item">
                     <a class="detall__container__slider__left__list-link" href="javascript:void(0)">
                       <img src="/template/images/ao1.jpg" alt="" class="detall__container__slider__left__list-image">
                     </a>
-                  </li>
+                  </li> --}}
                 </ul>
               </div>
               <div class="detall__container__ima">

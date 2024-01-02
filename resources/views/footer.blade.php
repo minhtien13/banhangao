@@ -234,8 +234,20 @@
     <span class="detall__modal__close">
     <i class="fas fa-times"></i>
     </span>
-  </div></div></div>
-  
+</div>
+
+<div class="overlay message__addcart__overlay addcart__close oh"></div>
+<div class="message__addcart oh">
+  <div class="message__addcart__war">
+    <h2 class="message__addcart__txt">đã thêm sản phẩm giỏ hàng thành công</h2>
+  </div>
+  <div class="message__addcart__bottom">
+    <button class="btn message__addcart__btn addcart__close">Hủy</button>
+    <button id="active__cart__view" class="btn message__addcart__btn">Xem giỏ hàng</button>
+  </div>
+
+  <span class="message__addcart__close addcart__close">X</span>
+</div>
 
 <button class="btn backtop">
   <i class="fa-solid fa-chevron-up"></i>

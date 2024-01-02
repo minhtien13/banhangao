@@ -38,6 +38,12 @@ class CartService
         $cartId = $request->input('cart_id');
         $cartQty = $request->input('cart_qty');
 
+        $productCart = product::where('id', $cartId)->select('price', 'price_sale')->first();
+
+        if ($productCart->price == 0 && $productCart->price_sale == 0) {
+            return false;
+        }
+
         if ($cartId == 0 && $cartQty == 0) {
             response()->json(['error' => true, 'message' => 'số lượng hoặc mã sản phẩm']);
             return false;

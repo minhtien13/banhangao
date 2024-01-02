@@ -26,7 +26,9 @@ class MainController extends Controller
     public function index(Request $request)
     {
         $title = $request->input('search');
-        return view('porducts.product', [
+        $template = $title != null ? 'porducts.search' : 'porducts.product';
+        
+        return view($template, [
             'title' => 'SHOPBASIC io vn',
             'product' => $this->productService->getShow($title),
             'staturs' => 0,
@@ -68,5 +70,14 @@ class MainController extends Controller
             'staturs' => 2,
             'data' => $resuit
         ]);
+    }
+
+    public function loadMenuFirst(Request $request) 
+    {
+        $id = $request->input('id');
+        $menuId = $request->input('menu_id');
+        $resuit = $this->menuService->GetMenuFirstHome($id, $menuId);
+
+        return response()->json(['error' => false, 'data' => $resuit]);
     }
 }
