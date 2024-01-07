@@ -7,6 +7,7 @@ use App\Http\Services\menu\menuService;
 use App\Http\Services\product\productService;
 use App\Models\User;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class helper  
@@ -43,7 +44,12 @@ class helper
         return $html;
     }
 
-   
+    public static function countRow($table)
+    {
+        $data = DB::table($table)->select('id')->get();
+
+        return count($data);
+    }
 
     public static function staturs($active)
     {

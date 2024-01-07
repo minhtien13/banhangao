@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('product_id');
             $table->integer('price');
             $table->integer('qty');
+            $table->string('user_id')->nullable();
             $table->timestamps();
         });
     }

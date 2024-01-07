@@ -54,10 +54,10 @@ class productService
         try {
             $product->fill($request->input());
             $product->save();
-            Session::flash('success', 'Đã cập nhật thêm sản phẩm thành công');
+            Session::flash('success', 'Đã cập nhật sản phẩm thành công');
             return true;
         } catch (\Exception $err) {
-            Session::flash('error', 'cập nhật thêm sản phẩm không thành công');
+            Session::flash('error', 'cập nhật sản phẩm không thành công');
             return false;
         }
     }

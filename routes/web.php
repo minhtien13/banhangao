@@ -112,6 +112,10 @@ Route::middleware(['auth'])->group(function() {
             Route::get('contomer', [UserController::class, 'contomer']);
             Route::get('add', [UserController::class, 'create']);
             Route::post('add', [UserController::class, 'store']);
+            Route::get('edit/{id}', [UserController::class, 'edit']);
+            Route::get('chang/{user}', [UserController::class, 'chang']);
+            Route::post('chang/{user}', [UserController::class, 'changStore']);
+            Route::post('edit/{id}', [UserController::class, 'update']);
             Route::DELETE('remove', [UserController::class, 'destroy']);
         });
 

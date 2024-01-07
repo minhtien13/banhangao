@@ -6,6 +6,7 @@ use App\Models\c;
 use App\Models\cart;
 use App\Models\curtomer;
 use App\Models\product;
+use App\Models\User;
 use Faker\Extension\Extension;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
@@ -99,7 +100,12 @@ class CartService
     }
 
     public function insertCart($data, $curtomerId) {
-
+      
+        $userId = 0;
+        if (isset($_COOKIE['email'])) {
+            $user = User::where('email', $_COOKIE['email'])->select('id')->first();
+            $userId = $user->id;
+        }
 
         $productId = array_keys($data);
         $product =  product::select('id', 'title', 'thumb', 'price', 'price_sale')  
@@ -113,7 +119,8 @@ class CartService
                 'curtomer_id' => $curtomerId,
                 'product_id' => $value['id'],
                 'price' => $value['price_sale'] != 0 ? $value['price_sale'] : $value['price'],
-                'qty' => $data[$value['id']]
+                'qty' => $data[$value['id']],
+                'user_id' => $userId
             ];
 
         }

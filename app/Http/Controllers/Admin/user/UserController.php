@@ -80,23 +80,63 @@ class UserController extends Controller
         ]); 
     }
 
-    public function edit()
+    public function edit(User $id)
     {
         if (Auth::user()->level != 1) return redirect()->route('admin');
 
+        return view('admin.accounts.edit', [
+            'title' => 'chỉnh sửa tài khoản',
+            'data' => $id
+        ]);
+
     }
 
-    public function update()
+    public function update(Request $request, User $id)
     {
         if (Auth::user()->level != 1) return redirect()->route('admin');
 
+        $request->validate([
+            'name' => 'required',
+        ], [
+            'name.required' => 'Đặt tên tài khoản của bạn',
+        ]);
+
+        $resuit = $this->accountService->update($request, $id);
+
+        if ($resuit) {
+            return $id->level == 3 ? redirect('/admin/account/contomer') : redirect('/admin/account/list');
+        }
+        return redirect('/admin/account/list');
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         $id = $request->input('id');
 
-        if ($id == 0) return response()->json(['error' => false, 'messages' => 'Tài khoản không tồn tại']);
+        if ($id == 0) return response()->json(['error' => true, 'messages' => 'Tài khoản không tồn tại']);
+
+        $resuit = $this->accountService->destroy($id);
+
+        if ($resuit) {
+            return response()->json(['error' => false, 'messages' => 'Đã xóa tài khoản thành công']);
+        }
+
+        return response()->json(['error' => true, 'messages' => 'Xóa tài khoản không thành công']);
+    }
+
+    public function chang(User $user) 
+    {
+        if (Auth::user()->id != $user->id) return redirect()->back();
+
+        return view('admin.accounts.chang', [
+            'title' => 'Chỉnh sửa thông tin tài khoản',
+            'data' => $user
+        ]);    
+    }
+
+    public function changStore(Request $request, User $user)
+    {
+        if (Auth::user()->id != $user->id) return redirect()->back();
 
         
     }

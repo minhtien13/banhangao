@@ -31,8 +31,8 @@
         <div class="form-group">
             <label for="exampleInputEmail1">trại thái</label>
             <select name="is_active" id="" class="form-control">
-                <option value="1">Công khai</option>
-                <option value="0">không Công khai</option>
+                <option value="1">Hoạt động</option>
+                <option value="0">Tạm khóa</option>
             </select>
         </div>
     </div>
