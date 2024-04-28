@@ -236,7 +236,7 @@ class helper
 
             $html .= '<div class="product__is__emty oh" id="product__is__emty__'.  $menuId . '">
                         <span class="product___is__emty-txt">
-                        Đang cập nhật sản phẩm 
+                        Đang cập nhật sản phẩm...
                         </span>
                     </div>
                 ';
@@ -245,7 +245,7 @@ class helper
         if (count($data) == 0) {
             $html .= '<div class="product__is__emty" id="product__is__emty__'.  $menuId . '">
                         <span class="product___is__emty-txt">
-                        Đang cập nhật sản phẩm 
+                        Đang cập nhật sản phẩm... 
                         </span>
                     </div>
                 ';

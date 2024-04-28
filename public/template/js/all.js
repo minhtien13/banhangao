@@ -459,3 +459,33 @@ $("#filter_product").change(function () {
         },
     });
 });
+
+function CartUpdateQty(id, action = 1) {
+    var qtyNumber = $("#qty_number_id_" + id).val();
+
+    if (action == 1) {
+        qtyNumber++;
+    } else {
+        qtyNumber--;
+    }
+    if (qtyNumber.length != 0) {
+        $.ajax({
+            type: "POST",
+            url: "cart-update-qty",
+            data: {
+                cart_id: id,
+                cart_qty: qtyNumber,
+            },
+            dataType: "JSON",
+            success: function (response) {
+                if (response.error == false) {
+                    $("#order__price_" + id).html(response.data.price_total);
+                    $("#order__sumall").html(response.data.total);
+                    $("#qty_number_id_" + id).val(response.data.qty);
+                }
+            },
+        });
+    } else {
+        $("#qty_number_id_" + id).val(0);
+    }
+}

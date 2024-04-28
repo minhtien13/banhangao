@@ -73,6 +73,44 @@ class CartService
         return true;
     }
 
+    public function totalPrice($cartId = 0, $cartQty = 0)
+    {
+        $products = $this->getProduct();
+        $carts = Session::get('carts');
+        $total = 0;
+        foreach ($products as $product) {
+            $price = $product->price_sale != 0 ? $product->price_sale : $product->price;
+            $total += $price * $carts[$product->id]; 
+        }
+
+        $productFirst = product::select('price', 'price_sale')->where('is_active', 1)->where('id', $cartId)->first();
+        $priceFirst = $productFirst->price_sale != 0 ? $productFirst->price_sale : $productFirst->price;
+        $priceTotal = $priceFirst  * $cartQty;
+
+
+        return [
+            'total' => number_format($total),
+            'price_total' => number_format($priceTotal),
+            'qty' => $cartQty
+        ];
+
+    }
+
+    public function cartUpdateQty($request) 
+    {
+        $cartId = $request->input('cart_id');
+        $cartQty = (int)$request->input('cart_qty');
+        $cartQty =  $cartQty != 0 ?  $cartQty : 1;
+        
+        $carts = Session::get('carts');
+        if (isset($carts[$cartId])) {
+            $carts[$cartId] =  $cartQty;
+            Session::put('carts', $carts);
+            $price_total = $this->totalPrice($cartId, $carts[$cartId]);
+            return $price_total;
+        }
+    }
+
     public function getProduct()
     {
         $carts = Session::get('carts');

@@ -50,9 +50,9 @@ class UserController extends Controller
         ], [
             'name.required' => 'Đặt tên tài khoản của bạn',
             'email.required' => 'Nhập Dịa chỉ của bạn',
-            'email.required' => 'Chọn vai trò',
             'email.email' => 'Nhập Dịa chỉ sài định dạng',
             'email.unique' => 'Dịa chỉ của bạn đã tồn tại không thể đăng ký',
+            'level.required' => 'Chọn vai trò',
             'password.required' => 'Đặt Mật khẩu cho tài khoản',
             'password.min' => 'Đặt Mật khẩu cho tài khoản từ 6 ký tự trở lên',
         ]);
@@ -138,6 +138,51 @@ class UserController extends Controller
     {
         if (Auth::user()->id != $user->id) return redirect()->back();
 
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email, ' . $user->id,
+        ], [
+            'name.required' => 'Đặt tên tài khoản của bạn',
+            'email.required' => 'Nhập Dịa chỉ của bạn',
+            'email.email' => 'Nhập Dịa chỉ sài định dạng',
+            'email.unique' => 'Dịa chỉ của bạn đã tồn tại không thể đăng ký'
+        ]);
         
+        $resuit = $this->accountService->chang($request, $user);
+        
+        if ($resuit) {
+            return redirect()->back();
+        }
+
+        return redirect('/admin/account/list');
+    }
+
+    public function password(User $user)
+    {
+        if (Auth::user()->id != $user->id) return redirect()->back();
+
+        return view('admin.accounts.password', [
+            'title' => 'đổi mật khẩu'
+        ]); 
+    }
+
+    public function passwordStore(Request $request, User $user)
+    {
+        if (Auth::user()->id != $user->id) return redirect('/account/password/' . $user->id);
+
+        $request->validate([
+            'password' => 'required|min:6',
+        ], [
+            'password.required' => 'Đặt Mật khẩu mới cho tài khoản của bạn',
+            'password.min' => 'Đặt Mật khẩu cho tài khoản từ 6 ký tự trở lên',
+        ]);
+
+        $resuit = $this->accountService->changPassword($request, $user);
+        
+        if ($resuit) {
+            return redirect()->back();
+        }
+
+        return redirect('/admin/account/list');
     }
 }

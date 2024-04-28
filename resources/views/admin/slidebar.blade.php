@@ -132,25 +132,7 @@
         </ul>
       </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">
-          <i class="nav-icon fas fa-sign-out-alt"></i>
-          <p>
-            Thoát
-            <i class="right fas fa-angle-left"></i>
-          </p>
-        </a>
-        <ul class="nav nav-treeview">
-          <li class="nav-item">
-            <a href="/user/logout" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Dăng xuất</p>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="nav-item">
+      <li class="nav-item mt-auto">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-user"></i>
           <p>
@@ -163,6 +145,20 @@
               <a href="/admin/account/chang/{{ \Auth::user()->id }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Chỉnh sửa thông tin</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/admin/account/password/{{ \Auth::user()->id }}" class="nav-link">
+                <i class="fas fa-lock nav-icon"></i>
+                <p>đổi mật khẩu</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/user/logout" class="nav-link">
+                <i class="fas fa-sign-out-alt nav-icon"></i>
+                <p>Dăng xuất</p>
               </a>
             </li>
         </ul>

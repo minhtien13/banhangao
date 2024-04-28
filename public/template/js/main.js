@@ -127,3 +127,13 @@ $("#post__blog__down").click(function () {
     );
     $("#post__blog__down").remove();
 });
+
+$(window).scroll(function () {
+    if ($(window).scrollTop() <= 30) {
+        $(".message__main").addClass("oh");
+    }
+});
+
+setTimeout(() => {
+    $(".message__main").addClass("oh");
+}, 1000 * 5);

@@ -18,6 +18,13 @@
       referrerpolicy="no-referrer"
     />
 
+    {{-- seo --}}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SHOPBASIC io vn" />
+    <meta property="og:image" content="https://www.shopbasic.io.vn/template/images/logo.jpg" />
+    <meta property="og:image:secure_url" content="https://www.shopbasic.io.vn/template/images/logo.jpg" />
+    <meta name="description" content="SHOPBASIC io vn - áo, quần, nón, túi sách" />
+
     <link rel="stylesheet" href="/template/css/reset.css" />
     <link rel="stylesheet" href="/template/css/main.css" />
     <link rel="stylesheet" href="/template/css/base.css" />

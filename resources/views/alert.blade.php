@@ -5,3 +5,7 @@
 @if (\Session::get('error'))
 <div class="message__main message__main--error">{{ \Session::get('error') }}</div>    
 @endif
+
+<div class="message__main message__main--success oh">
+    Đặt hàng thành công    
+</div>    

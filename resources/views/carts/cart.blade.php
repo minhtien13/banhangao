@@ -65,13 +65,13 @@
                                         </span>
                                     </div>
                                     <div class="cart__container__order__content__right">
-                                        <span class="cart__container__order__price">{{ number_format($sum) }}</span>
+                                        <span class="cart__container__order__price" id="order__price_{{ $row->id }}">{{ number_format($sum) }}</span>
                                         <div class="detall__container__add__qty">
-                                        <button class="detall__container__add__qty-btn btn">
+                                        <button class="detall__container__add__qty-btn btn" onclick="CartUpdateQty({{ $row->id }}, 0)">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                        <input type="number" class="detall__container__add__qty-number" value="{{ $cart[$row->id] }}">
-                                        <button class="detall__container__add__qty-btn btn">
+                                        <input type="text" id="qty_number_id_{{ $row->id }}" readonly class="detall__container__add__qty-number" value="{{ $cart[$row->id] }}">
+                                        <button class="detall__container__add__qty-btn btn" onclick="CartUpdateQty({{ $row->id }}, 1)">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                         </div>
@@ -87,7 +87,7 @@
                             <p class="cart__container__order__payment__top-text">
                             Tổng cộng
                             </p>
-                            <span class="cart__container__order__payment__top-all">
+                            <span class="cart__container__order__payment__top-all" id="order__sumall">
                                 {{ number_format($sumAll) }}<sub>đ</sub>
                             </span>
                         </div>

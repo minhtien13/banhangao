@@ -10,7 +10,7 @@
 
         <div class="form-group">
             <label for="exampleInputEmail1">Gmail / Tài khoản</label>
-            <input type="email" name="email" value="{{ $data->email }}" class="form-control" placeholder="Tên tài khoản">
+            <input type="email" name="email" value="{{ $data->email }}" class="form-control" placeholder="Gmail / Tài khoản<">
         </div>
 
     </div>

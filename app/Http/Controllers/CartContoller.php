@@ -27,6 +27,17 @@ class CartContoller extends Controller
         
         return response()->json(['error' => true, 'message' => 'thêm vào giỏ thất bại']);
     }
+   
+    public function cartUpdateQty(Request $request)
+    {       
+        $resuit = $this->cartService->cartUpdateQty($request);
+
+        if ($resuit) {
+            return response()->json(['error' => false, 'data' => $resuit]);
+        }
+        
+        return response()->json(['error' => true, 'message' => 'thêm vào giỏ thất bại']);
+    }
        
     public function index()
     {

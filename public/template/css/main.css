@@ -1805,9 +1805,13 @@ body {
     font-size: 1.4rem;
     color: #000;
 }
-.cart__container__order__content .detall__container__add__qty-btn:hover,
-.cart__container__order__content .detall__container__add__qty-number:hover {
+.cart__container__order__content .detall__container__add__qty-btn:hover {
     color: #fff;
+    background-color: #919191;
+}
+.detall__container__add__qty-number {
+    outline: none;
+    border: none;
 }
 .cart__container__order__title {
     font-size: 1.4rem;
@@ -1935,8 +1939,11 @@ body {
         width: 65px;
         height: 65px;
     }
+    .cart__container__order__content .detall__container__add__qty-btn:hover {
+        color: #000;
+        background-color: #fff;
+    }
 }
-
 .checkout__main {
     margin: 2rem auto;
     width: 60%;
@@ -2575,6 +2582,14 @@ body {
     .backtop {
         bottom: 20px;
         font-size: 1.5rem;
+    }
+
+    .message__main {
+        top: 10px;
+        width: 90%;
+        font-size: 1.2rem;
+        border-radius: 30px;
+        min-height: 40px;
     }
 }
 

@@ -113,10 +113,12 @@ Route::middleware(['auth'])->group(function() {
             Route::get('add', [UserController::class, 'create']);
             Route::post('add', [UserController::class, 'store']);
             Route::get('edit/{id}', [UserController::class, 'edit']);
-            Route::get('chang/{user}', [UserController::class, 'chang']);
-            Route::post('chang/{user}', [UserController::class, 'changStore']);
             Route::post('edit/{id}', [UserController::class, 'update']);
             Route::DELETE('remove', [UserController::class, 'destroy']);
+            Route::get('chang/{user}', [UserController::class, 'chang']);
+            Route::post('chang/{user}', [UserController::class, 'changStore']);
+            Route::get('password/{user}', [UserController::class, 'password']);
+            Route::post('password/{user}', [UserController::class, 'passwordStore']);
         });
 
         // 
@@ -153,6 +155,7 @@ Route::get('danh-muc/{id}-{slug}.html', [App\Http\Controllers\ProductController:
 Route::post('cart-add', [App\Http\Controllers\CartContoller::class, 'addCart']);
 Route::get('gio-hang.html', [App\Http\Controllers\CartContoller::class, 'index']);
 Route::post('cart-delete', [App\Http\Controllers\CartContoller::class, 'delete']);
+Route::post('cart-update-qty', [App\Http\Controllers\CartContoller::class, 'cartUpdateQty']);
 Route::get('dat-hang.html', [App\Http\Controllers\CartContoller::class, 'checkout']);
 Route::post('cart/store', [App\Http\Controllers\CartContoller::class, 'store']);
 Route::post('cart/qty', [App\Http\Controllers\CartContoller::class, 'countQty']);

@@ -151,7 +151,13 @@
               <h4 class="detall__content__bar-heading">Mô tả sản phẩm</h4>
             </div>
             <div class="detall__content__text">
-                {!! $detall->content !!}
+                @if ($detall->content != '')
+                      {!! $detall->content !!}  
+                @endif
+
+                @if ($detall->content == '')
+                    <p style="text-align: center">Đang cập nhật... </p>
+                @endif
             </div>
           </div>
 
