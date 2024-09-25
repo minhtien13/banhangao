@@ -12,7 +12,7 @@ class productService
     {
         $slug = $request->input('url');
         $resuit = product::where('slug_url', $slug)->first();
-        
+
         if ($resuit) {
             $slug .= '-' . rand(10, 1000000);
         }
@@ -62,7 +62,7 @@ class productService
         }
     }
 
-    public function getShow($title = '' ,$page = 10)
+    public function getShow($title = '' , $page = 10)
     {
         if ($title == '') {
             return product::orderByDesc('id')
@@ -81,8 +81,8 @@ class productService
     public function getListMenu($menuId = 0, $id = 0) {
         return product::where('is_active', 1)->where('menu_id', $menuId)->limit(8)->orderByDesc("id")->get();
     }
-  
-    public function getDetall($id = 0, $url = '') 
+
+    public function getDetall($id = 0, $url = '')
     {
         if ($url != '') {
             return product::where('is_active', 1)
@@ -90,7 +90,7 @@ class productService
                 ->select('title','slug_url', 'thumb', 'price', 'menu_id', 'price_sale', 'id', 'product_color', 'product_code', 'content')
                 ->first();
         }
-       
+
         if ($id != 0) {
             return product::where('is_active', 1)
                 ->where('id', $id)
@@ -98,8 +98,8 @@ class productService
                 ->first();
         }
     }
-    
-    public function getListDetall($menuId = 0, $id = 0) 
+
+    public function getListDetall($menuId = 0, $id = 0)
     {
         return product::where('is_active', 1)->where('menu_id', $menuId)->where('id', '!=', $id)->limit(5)->orderByDesc("id")->get();
     }

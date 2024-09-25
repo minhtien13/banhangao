@@ -20,7 +20,7 @@
                 <tr>
                     <td style="width: 20px;">{{ $row->id }}</td>
                     <td>{{ $row->title }}</td>
-                    <td>  
+                    <td>
                         @if (isset( $row->menu->id))
                            {{ $row->menu->name }}
                         @endif
@@ -42,13 +42,13 @@
                             </a>
                         </div>
                     </td>
-                </tr>                
+                </tr>
             @endforeach
 
         </tbody>
-    
+
     </table>
-      <div class="">
+      <div class="d-flex justify-content-center">
           {{ $data->links() }}
     </div>
 @endsection

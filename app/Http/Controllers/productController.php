@@ -18,8 +18,8 @@ class ProductController extends Controller
     {
         return view('product', [
             'title' => 'tất cả sản phẩm - SHOPBASIC',
-            'product' => $this->product->getShow('', 30),
-            'staturs' => 1 
+            'product' => $this->product->getShow('', 10),
+            'staturs' => 1
         ]);
     }
 
@@ -34,12 +34,12 @@ class ProductController extends Controller
        return response()->json(['error' => true, 'messge' => 'không có dự liệu']);
     }
 
-    public function productList($id) 
+    public function productList($id)
     {
         return view('product', [
             'title' => 'tất cả sản phẩm',
             'product' => $this->product->getListMenu($id),
-            'staturs' => 1 
+            'staturs' => 1
         ]);
     }
 
@@ -49,9 +49,9 @@ class ProductController extends Controller
         $resuit = $this->product->getDetall($id);
 
         if ($id == 0) {
-            return response()->json(['error' => true, 'message' => 'không có sản phẩm này']); 
+            return response()->json(['error' => true, 'message' => 'không có sản phẩm này']);
         }
-        
+
         if ($resuit) {
             return response()->json(['error' => false, 'data' => $resuit]);
         }
@@ -59,14 +59,14 @@ class ProductController extends Controller
         return response()->json(['error' => true, 'message' => 'không có sản phẩm này']);
     }
 
-    
 
-    public function productListMenu($id = 0, $slug = '') 
+
+    public function productListMenu($id = 0, $slug = '')
     {
         return view('product', [
             'title' => 'tất cả sản phẩm',
             'product' => $this->product->getListMenu($id),
-            'staturs' => 1 
+            'staturs' => 1
         ]);
     }
 

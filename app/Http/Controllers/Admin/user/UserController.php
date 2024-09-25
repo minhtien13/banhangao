@@ -21,27 +21,21 @@ class UserController extends Controller
 
     public function index()
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-
         return view('admin.accounts.list', [
             'title' => 'danh sách tài khoản admin',
             'data' => $this->accountService->get()
-        ]); 
+        ]);
     }
 
     public function create()
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-
         return view('admin.accounts.add', [
             'title' => 'tạo tài khoản mới'
-        ]);    
+        ]);
     }
 
     public function store(Request $request)
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-        
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -56,7 +50,7 @@ class UserController extends Controller
             'password.required' => 'Đặt Mật khẩu cho tài khoản',
             'password.min' => 'Đặt Mật khẩu cho tài khoản từ 6 ký tự trở lên',
         ]);
-        
+
         $account = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -72,18 +66,14 @@ class UserController extends Controller
 
     public function contomer()
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-
         return view('admin.accounts.contomer', [
             'title' => 'danh sách tài khoản khách hàng',
             'data' => $this->accountService->get()
-        ]); 
+        ]);
     }
 
     public function edit(User $id)
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-
         return view('admin.accounts.edit', [
             'title' => 'chỉnh sửa tài khoản',
             'data' => $id
@@ -93,8 +83,6 @@ class UserController extends Controller
 
     public function update(Request $request, User $id)
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-
         $request->validate([
             'name' => 'required',
         ], [
@@ -124,14 +112,14 @@ class UserController extends Controller
         return response()->json(['error' => true, 'messages' => 'Xóa tài khoản không thành công']);
     }
 
-    public function chang(User $user) 
+    public function chang(User $user)
     {
         if (Auth::user()->id != $user->id) return redirect()->back();
 
         return view('admin.accounts.chang', [
             'title' => 'Chỉnh sửa thông tin tài khoản',
             'data' => $user
-        ]);    
+        ]);
     }
 
     public function changStore(Request $request, User $user)
@@ -147,9 +135,9 @@ class UserController extends Controller
             'email.email' => 'Nhập Dịa chỉ sài định dạng',
             'email.unique' => 'Dịa chỉ của bạn đã tồn tại không thể đăng ký'
         ]);
-        
+
         $resuit = $this->accountService->chang($request, $user);
-        
+
         if ($resuit) {
             return redirect()->back();
         }
@@ -163,7 +151,7 @@ class UserController extends Controller
 
         return view('admin.accounts.password', [
             'title' => 'đổi mật khẩu'
-        ]); 
+        ]);
     }
 
     public function passwordStore(Request $request, User $user)
@@ -178,7 +166,7 @@ class UserController extends Controller
         ]);
 
         $resuit = $this->accountService->changPassword($request, $user);
-        
+
         if ($resuit) {
             return redirect()->back();
         }

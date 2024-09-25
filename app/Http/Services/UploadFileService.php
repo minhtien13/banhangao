@@ -12,8 +12,13 @@ class UploadFileService
             try {
                 $name = $request->file('file')->getClientOriginalName();
                 $pathFull = 'upload/' . date("Y/m/d");
+                $checkFile = 'uploads/' . $pathFull . '/' . $name;
+                if (file_exists($checkFile)) {
+                    $name = time() . '-' . $name;
+                }
+
                 $request->file('file')->storeAs($pathFull,  $name, 'public_uploads');
-    
+
                 return '/uploads/' . $pathFull . '/' . $name;
             } catch (\Exception $err) {
                 return false;

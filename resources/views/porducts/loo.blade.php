@@ -1,12 +1,12 @@
 <section class="product">
     <div class="container">
-    
+
       @include('bar')
 
       <ul class="product-list" id="product_item_add">
-        
+
         @foreach ($product as $productItem)
-          
+
         <li class="product-list__item">
           <div class="product-list__ima">
             <img
@@ -38,7 +38,7 @@
             <a href="/san-pham/{{ $productItem->slug_url }}.html" class="product-list__title">
               <h1>{{ $productItem->title }}</h1>
             </a>
-            
+
             {!! App\helpers\helper::headPrice($productItem->price, $productItem->price_sale) !!}
 
             <span
@@ -47,17 +47,22 @@
             ></span>
           </div>
         </li>
-        
+
         @endforeach
 
       </ul>
 
-      @if ($staturs == 0)        
+      @if ($staturs == 0)
         <div class="product__bottom">
           <a href="/san-pham.html" class="btb product__bottom-link"
             >Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
+      @else
+        <div class="product__page">
+            {{ $product->links() }}
+        </div>
       @endif
+
     </div>
   </section>

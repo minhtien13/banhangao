@@ -26,8 +26,6 @@ class IntroController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-        
         return view('admin.intros.list', [
             'title' => 'Danh sách giới thiệu',
             'data' => $this->introService->get()
@@ -41,8 +39,6 @@ class IntroController extends Controller
      */
     public function create()
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-        
         return view('admin.intros.add', [
             'title' => 'tạo trang giới thiệu'
         ]);
@@ -56,8 +52,6 @@ class IntroController extends Controller
      */
     public function store(createIntroRequest $request)
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-        
         $row = $this->introService->countRow();
         if (count($row) != 0) {
             Session::flash('error', 'Trang giới đã tồn tại bạn không thể tạo thêm nữa');
@@ -66,10 +60,10 @@ class IntroController extends Controller
 
         $resuit = $this->introService->insert($request);
         if ($resuit) {
-            return redirect('/admin/intro/list');  
+            return redirect('/admin/intro/list');
         }
 
-        return redirect('/admin/intro/list');  
+        return redirect('/admin/intro/list');
     }
 
     /**
@@ -80,8 +74,6 @@ class IntroController extends Controller
      */
     public function show(c $c)
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-        
         //
     }
 
@@ -93,8 +85,6 @@ class IntroController extends Controller
      */
     public function edit(intro $id)
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-        
         return view('admin.intros.edit', [
             'title' => 'tạo trang giới thiệu',
             'data' => $id
@@ -110,14 +100,12 @@ class IntroController extends Controller
      */
     public function update(createIntroRequest $request, intro $id)
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-        
         $resuit = $this->introService->update($id, $request);
         if ($resuit) {
-            return redirect('/admin/intro/list');  
+            return redirect('/admin/intro/list');
         }
 
-        return redirect('/admin/intro/list');  
+        return redirect('/admin/intro/list');
     }
 
     /**
@@ -128,8 +116,6 @@ class IntroController extends Controller
      */
     public function destroy(Request $request)
     {
-        if (Auth::user()->level != 1) return redirect()->route('admin');
-        
         $resuit = $this->introService->destroy($request);
         if ($resuit) {
             return response()->json(['error' => false, 'message' => 'Đã xóa giới thiệu thành công']);

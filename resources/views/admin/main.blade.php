@@ -1,4 +1,11 @@
-@include('admin.header')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @include('admin.head')
+</head>
+
+<body class="hold-transition sidebar-mini">
+  @include('admin.header')
 
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
@@ -14,7 +21,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 
-    
+
     <!-- Main content -->
     <section class="content mt-5">
       @include('admin.alert')
@@ -27,21 +34,10 @@
               <div class="card-header">
                 <h3 class="card-title">{{  $title }}</h3>
               </div>
-              
+
               @yield('container')
 
-              {{-- <form id="quickForm">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
-            </div> --}}
+
             <!-- /.card -->
             </div>
           <!--/.col (left) -->
@@ -54,5 +50,6 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
+
     <!-- /.content -->
  @include('admin.footer')

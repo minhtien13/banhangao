@@ -42,3 +42,29 @@
 .detall__container__share__list-link {
     background-color: var(--scial-icon-bg);
 }
+
+.product__page ul {
+    margin-top: 50px;
+    display: flex;
+    gap: 10px;
+}
+.product__page li {
+    display: inline-flex;
+}
+.product__page span,
+.product__page a {
+    font-size: 1.4rem;
+    display: block;
+    padding: 15px 20px;
+    color: #000;
+    background-color: #d1d0d0;
+    border-radius: 3px;
+}
+.active span,
+.product__page a:hover {
+    color: #fff;
+    background-color: #000;
+}
+.product__page .disabled {
+    display: none;
+}

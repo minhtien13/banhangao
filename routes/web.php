@@ -26,7 +26,7 @@ Route::get('user/login', [LoginController::class, 'index'])->name('login');
 Route::post('user/login', [LoginController::class, 'login']);
 Route::get('user/logout', [MainController::class, 'logout']);
 
-// 
+//
 Route::get('dang-nhap.html', [App\Http\Controllers\LoginController::class, 'index'])->name('accLogin');
 Route::post('user/acc/login', [App\Http\Controllers\LoginController::class, 'login']);
 Route::get('dang-xuat.logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('accLogout');
@@ -37,14 +37,14 @@ Route::get('doi-mat-khau.html', [AccountController::class, 'pass']);
 Route::post('user/acc/change', [AccountController::class, 'chang']);
 Route::get('dia-chi.html', [AccountController::class, 'address']);
 
-// 
+//
 Route::get('dang-ky.html', [RegisterController::class, 'index']);
 Route::post('user/acc/register', [RegisterController::class, 'store']);
 
-// 
+//
 Route::middleware(['auth'])->group(function() {
     Route::prefix('admin')->group(function() {
-        Route::get('main', [MainController::class, 'index'])->name('admin');
+        Route::get('/', [MainController::class, 'index'])->name('admin');
         Route::post('upload-file', [UploadFileController::class, 'upload']);
 
         Route::prefix('menu')->group(function() {
@@ -56,33 +56,6 @@ Route::middleware(['auth'])->group(function() {
             Route::DELETE('remove', [MenuController::class, 'destroy']);
         });
 
-        Route::prefix('post')->group(function() {
-            Route::get('add', [PostController::class, 'create']);
-            Route::post('add', [PostController::class, 'store']);
-            Route::get('list', [PostController::class, 'index']);
-            Route::get('edit/{id}', [PostController::class, 'edit']);
-            Route::post('edit/{id}', [PostController::class, 'update']);
-            Route::DELETE('remove', [PostController::class, 'destroy']);
-        });
-
-        Route::prefix('intro')->group(function() {
-            Route::get('add', [IntroController::class, 'create']);
-            Route::post('add', [IntroController::class, 'store']);
-            Route::get('list', [IntroController::class, 'index']);
-            Route::get('edit/{id}', [IntroController::class, 'edit']);
-            Route::post('edit/{id}', [IntroController::class, 'update']);
-            Route::DELETE('remove', [IntroController::class, 'destroy']);
-        });
-
-        Route::prefix('contact')->group(function() {
-            Route::get('add', [ContactControlle::class, 'create']);
-            Route::post('add', [ContactControlle::class, 'store']);
-            Route::get('list', [ContactControlle::class, 'index']);
-            Route::get('edit/{id}', [ContactControlle::class, 'edit']);
-            Route::post('edit/{id}', [ContactControlle::class, 'update']);
-            Route::DELETE('remove', [ContactControlle::class, 'destroy']);
-        });
-       
         Route::prefix('soclai')->group(function() {
             Route::get('add', [SoclaiController::class, 'create']);
             Route::post('add', [SoclaiController::class, 'store']);
@@ -100,7 +73,7 @@ Route::middleware(['auth'])->group(function() {
             Route::post('edit/{id}', [PolicyController::class, 'update']);
             Route::DELETE('remove', [PolicyController::class, 'destroy']);
         });
-       
+
         Route::prefix('cart')->group(function() {
             Route::get('list', [CartController::class, 'index']);
             Route::get('view/{id}', [CartController::class, 'cart']);
@@ -108,20 +81,14 @@ Route::middleware(['auth'])->group(function() {
         });
 
         Route::prefix('account')->group(function() {
-            Route::get('list', [UserController::class, 'index']);
             Route::get('contomer', [UserController::class, 'contomer']);
-            Route::get('add', [UserController::class, 'create']);
-            Route::post('add', [UserController::class, 'store']);
-            Route::get('edit/{id}', [UserController::class, 'edit']);
-            Route::post('edit/{id}', [UserController::class, 'update']);
-            Route::DELETE('remove', [UserController::class, 'destroy']);
             Route::get('chang/{user}', [UserController::class, 'chang']);
             Route::post('chang/{user}', [UserController::class, 'changStore']);
             Route::get('password/{user}', [UserController::class, 'password']);
             Route::post('password/{user}', [UserController::class, 'passwordStore']);
         });
 
-        // 
+        //
         Route::prefix('product')->group(function() {
             Route::get('add', [ProductController::class, 'create']);
             Route::post('add', [ProductController::class, 'store']);
@@ -130,6 +97,46 @@ Route::middleware(['auth'])->group(function() {
             Route::get('edit/{id}', [ProductController::class, 'show']);
             Route::post('edit/{id}', [ProductController::class, 'update']);
             Route::DELETE('remove', [ProductController::class, 'destroy']);
+        });
+
+        #Account manage
+        Route::middleware(['manage'])->group(function() {
+            #POST
+            Route::prefix('post')->group(function() {
+                Route::get('add', [PostController::class, 'create']);
+                Route::post('add', [PostController::class, 'store']);
+                Route::get('list', [PostController::class, 'index']);
+                Route::get('edit/{id}', [PostController::class, 'edit']);
+                Route::post('edit/{id}', [PostController::class, 'update']);
+                Route::DELETE('remove', [PostController::class, 'destroy']);
+            });
+
+            Route::prefix('account')->group(function() {
+                Route::get('list', [UserController::class, 'index']);
+                Route::get('add', [UserController::class, 'create']);
+                Route::post('add', [UserController::class, 'store']);
+                Route::get('edit/{id}', [UserController::class, 'edit']);
+                Route::post('edit/{id}', [UserController::class, 'update']);
+                Route::DELETE('remove', [UserController::class, 'destroy']);
+            });
+
+            Route::prefix('intro')->group(function() {
+                Route::get('add', [IntroController::class, 'create']);
+                Route::post('add', [IntroController::class, 'store']);
+                Route::get('list', [IntroController::class, 'index']);
+                Route::get('edit/{id}', [IntroController::class, 'edit']);
+                Route::post('edit/{id}', [IntroController::class, 'update']);
+                Route::DELETE('remove', [IntroController::class, 'destroy']);
+            });
+
+            Route::prefix('contact')->group(function() {
+                Route::get('add', [ContactControlle::class, 'create']);
+                Route::post('add', [ContactControlle::class, 'store']);
+                Route::get('list', [ContactControlle::class, 'index']);
+                Route::get('edit/{id}', [ContactControlle::class, 'edit']);
+                Route::post('edit/{id}', [ContactControlle::class, 'update']);
+                Route::DELETE('remove', [ContactControlle::class, 'destroy']);
+            });
         });
     });
 });

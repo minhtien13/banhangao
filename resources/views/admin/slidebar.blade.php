@@ -11,11 +11,6 @@
   <!-- Sidebar Menu -->
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-     
-      @if (\Auth::user()->level == 1)
-        @include('admin.setting')
-      @endif
-
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-bars"></i>
@@ -25,7 +20,7 @@
           </p>
         </a>
         <ul class="nav nav-treeview">
-    
+
           <li class="nav-item">
             <a href="/admin/menu/add" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
@@ -40,7 +35,7 @@
           </li>
         </ul>
       </li>
-      
+
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fab fa-product-hunt"></i>
@@ -86,10 +81,10 @@
               <p>Danh sách kết nối</p>
             </a>
           </li>
-          
+
         </ul>
       </li>
-     
+
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fas fa-pencil-alt"></i>
@@ -110,10 +105,10 @@
               <i class="far fa-circle nav-icon"></i>
               <p>Danh sách chính sách</p>
             </a>
-          </li>          
+          </li>
         </ul>
       </li>
-      
+
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-shopping-cart"></i>
@@ -163,5 +158,9 @@
             </li>
         </ul>
       </li>
+
+      @if (\Auth::user()->level == 1)
+        @include('admin.setting')
+      @endif
     </ul>
   </nav>
