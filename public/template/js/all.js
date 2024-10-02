@@ -51,14 +51,14 @@ function rederItemProduct(data) {
                     <img src="${
                         row["thumb"]
                     }" alt="SHOPBASIC io vn" class="product-list__image">
-                    
+
                     <img src="/template/images/logo.jpg" alt="SHOPBASIC io vn" class="product-list__logo">
 
                     <div class="product-list__active">
                     <a href="/san-pham/${
                         row["slug_url"]
                     }.html" class="product-list__active-link">
-                         <i class="fas fa-sliders-h"></i> 
+                         <i class="fas fa-sliders-h"></i>
                     </a>
                     <a href="javascript:void(0)" onclick="loadDetall(${
                         row["id"]
@@ -229,7 +229,7 @@ function loadDetall(id = 0) {
         dataType: "JSON",
         success: function (response) {
             if (response.error == false) {
-                renderDetall(response.data);
+                renderDetall(response.success.data, response.success.sliders);
 
                 setTimeout(() => {
                     $(".detall__modal").removeClass("oh");
@@ -242,7 +242,7 @@ function loadDetall(id = 0) {
     });
 }
 
-function renderDetall(data) {
+function renderDetall(data, sliders = []) {
     var productId = data.price == 0 && data.price_sale == 0 ? 0 : data.id;
 
     $(".detall__container__add__qty-number").val(1);
@@ -253,7 +253,7 @@ function renderDetall(data) {
         <ul class="detall__container__slider__left__list">
             <li
             class="detall__container__slider__left__list-item detall__container__slider__left__list-item--active"
-            >
+           onclick="productSlider('${data.thumb}', 0)" >
             <a
                 class="detall__container__slider__left__list-link"
                 href="javascript:void(0)"
@@ -264,22 +264,29 @@ function renderDetall(data) {
                 class="detall__container__slider__left__list-image"
                 />
             </a>
-            </li>
-            <li class="detall__container__slider__left__list-item">
-            <a
-                class="detall__container__slider__left__list-link"
-                href="javascript:void(0)"
-            >
-                <img
-                src="/template/images/ao1.jpg"
-                alt=""
-                class="detall__container__slider__left__list-image"
-                />
-            </a>
-            </li>
+            </li>`;
+
+    sliders.forEach((slider, index) => {
+        img += `
+                <li class="detall__container__slider__left__list-item"
+                onclick="productSlider('${slider.thumb}', ${index + 1})">
+                <a
+                    class="detall__container__slider__left__list-link"
+                    href="javascript:void(0)"
+                >
+                    <img
+                    src="${slider.thumb}"
+                    alt=""
+                    class="detall__container__slider__left__list-image"
+                    />
+                </a>
+                </li>`;
+    });
+
+    img += `
         </ul>
         </div>
-        <div class="detall__container__ima">
+        <div class="detall__container__ima" id="detail__img__id">
         <img
             src="${data.thumb}"
             alt=""
@@ -331,8 +338,8 @@ function renderDetall(data) {
             style="--product-color: ${data.product_color}"
         ></span>
         </div>
-        
-     
+
+
     </div>`;
     $("#detall__info").html(info);
 
@@ -488,4 +495,25 @@ function CartUpdateQty(id, action = 1) {
     } else {
         $("#qty_number_id_" + id).val(0);
     }
+}
+
+function productSlider(url, key) {
+    const img = ` <img src="${url}" alt="shopbasic" class="detall__container__ima-image">`;
+    const items = document.querySelectorAll(
+        ".detall__container__slider__left__list-item"
+    );
+
+    items.forEach((item, index) => {
+        if (index != key) {
+            item.classList.remove(
+                "detall__container__slider__left__list-item--active"
+            );
+        } else {
+            items[key].classList.add(
+                "detall__container__slider__left__list-item--active"
+            );
+        }
+    });
+
+    $("#detail__img__id").html(img);
 }

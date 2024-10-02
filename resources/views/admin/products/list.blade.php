@@ -11,6 +11,7 @@
                 <th>GIÁ GIÁM</th>
                 <th>HÌNH</th>
                 <th>TRẠI THÁI</th>
+                <th>ẢNH PHỤ</th>
                 <th>CẬP NHẬT</th>
                 <th>&nbsp;</th>
             </tr>
@@ -31,6 +32,11 @@
                         <img src="{{ $row->thumb }}" alt="" class="main__product__image">
                     </td>
                     <td>{!! \App\helpers\helper::staturs($row->is_active) !!}</td>
+                    <td>
+                        <a href="/admin/product/slider/add/{{ $row->id }}">
+                            <i class="far fa-images"></i>
+                        </a>
+                    </td>
                     <td>{{ $row->updated_at }}</td>
                     <td>
                         <div class="main__table__delete">

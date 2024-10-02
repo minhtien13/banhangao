@@ -6,17 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\product\productRequest;
 use App\Http\Services\menu\menuService;
 use App\Http\Services\product\productService;
+use App\Http\Services\product\productSliderService;
 use App\Models\product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     protected $productService;
+    protected $productSliderService;
     protected $MenuService;
 
-    public function __construct(productService $productService)
+    public function __construct(productService $productService, productSliderService $productSlider)
     {
         $this->productService = $productService;
+        $this->productSliderService = $productSlider;
         $this->MenuService = new menuService;
     }
     /**
@@ -79,7 +82,7 @@ class ProductController extends Controller
         ]);
     }
 
- 
+
     /**
      * Update the specified resource in storage.
      *
@@ -107,6 +110,7 @@ class ProductController extends Controller
         $resuit = $this->productService->remove($request);
 
         if ($resuit !== false) {
+            $this->productSliderService->removeSliderToProduct($request);
             return response()->json(['error' => false, 'Xóa sản phẩm thành công']);
         }
         return response()->json(['error' => true, 'Xóa sản phẩm không thành công']);

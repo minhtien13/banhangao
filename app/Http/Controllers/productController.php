@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\product\productService;
+use App\Http\Services\product\productSliderService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     protected $product;
+    protected $productSlider;
 
-    public function __construct(productService $product)
+    public function __construct(productService $product, productSliderService $productSlider)
     {
         $this->product = $product;
+        $this->productSlider = $productSlider;
     }
 
     public function product()
@@ -19,6 +22,7 @@ class ProductController extends Controller
         return view('product', [
             'title' => 'tất cả sản phẩm - SHOPBASIC',
             'product' => $this->product->getShow('', 10),
+            'page' => 1,
             'staturs' => 1
         ]);
     }
@@ -47,13 +51,17 @@ class ProductController extends Controller
     {
         $id = (int)$request->input('id');
         $resuit = $this->product->getDetall($id);
+        $sliders = $this->productSlider->getSlider($id);
 
         if ($id == 0) {
             return response()->json(['error' => true, 'message' => 'không có sản phẩm này']);
         }
 
         if ($resuit) {
-            return response()->json(['error' => false, 'data' => $resuit]);
+            return response()->json(['error' => false, 'success' => [
+                                    'data' => $resuit,
+                                    'sliders' => $sliders
+                                    ]]);
         }
 
         return response()->json(['error' => true, 'message' => 'không có sản phẩm này']);

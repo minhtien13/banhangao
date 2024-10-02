@@ -3,8 +3,8 @@
 namespace App\Http\Services\product;
 
 use App\Models\product;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
-use Nette\Utils\Random;
 
 class productService
 {
@@ -43,6 +43,12 @@ class productService
         $resuit = product::where('id', $id)->first();
 
         if ($resuit) {
+
+            $url = trim($resuit->thumb, '/');
+            if (File::exists($url)) {
+                file::delete($url);
+            }
+
             return product::where('id', $id)->delete();
         }
 
@@ -62,6 +68,18 @@ class productService
         }
     }
 
+    public function isCheckProduct($id = 0)
+    {
+        if ($id == 0) {
+            return false;
+        }
+
+        $product = product::where('id', $id)->select('id', 'title')->first();
+
+        return $product ? $product : false;
+    }
+
+    // PATH PUBLIC
     public function getShow($title = '' , $page = 10)
     {
         if ($title == '') {

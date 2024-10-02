@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class UploadFileService
@@ -13,7 +14,7 @@ class UploadFileService
                 $name = $request->file('file')->getClientOriginalName();
                 $pathFull = 'upload/' . date("Y/m/d");
                 $checkFile = 'uploads/' . $pathFull . '/' . $name;
-                if (file_exists($checkFile)) {
+                if (File::exists($checkFile)) {
                     $name = time() . '-' . $name;
                 }
 

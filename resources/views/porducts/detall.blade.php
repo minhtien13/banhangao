@@ -9,20 +9,25 @@
             <div class="detall__container__wrapper">
               <div class="detall__container__slider__left">
                 <ul class="detall__container__slider__left__list">
-                  <li class="detall__container__slider__left__list-item detall__container__slider__left__list-item--active">
+                  <li class="detall__container__slider__left__list-item detall__container__slider__left__list-item--active"
+                       onclick="productSlider('{{ $detall->thumb }}', 0)">
                     <a class="detall__container__slider__left__list-link" href="javascript:void(0)">
-                      <img src="/template/images/ao3.jpg" alt="" class="detall__container__slider__left__list-image">
+                      <img src="{{ $detall->thumb }}" alt="" class="detall__container__slider__left__list-image">
                     </a>
                   </li>
-                  {{-- <li class="detall__container__slider__left__list-item">
-                    <a class="detall__container__slider__left__list-link" href="javascript:void(0)">
-                      <img src="/template/images/ao1.jpg" alt="" class="detall__container__slider__left__list-image">
-                    </a>
-                  </li> --}}
+
+                   @foreach ($sliders as $key => $slider)
+                    <li class="detall__container__slider__left__list-item"
+                          onclick="productSlider('{{ $slider->thumb }}', {{ $key + 1 }})">
+                        <a class="detall__container__slider__left__list-link" href="javascript:void(0)">
+                        <img src="{{ $slider->thumb }}" alt="" class="detall__container__slider__left__list-image">
+                        </a>
+                    </li>
+                   @endforeach
                 </ul>
               </div>
-              <div class="detall__container__ima">
-                <img src="{{ $detall->thumb }}" alt="" class="detall__container__ima-image">
+              <div class="detall__container__ima" id="detail__img__id">
+                <img src="{{ $detall->thumb }}" alt="shopbasic" class="detall__container__ima-image">
               </div>
             </div>
             <div class="detall__container__wrapper">
@@ -111,7 +116,7 @@
                 <div class="detall__container__cart__message">
                   Gọi đặt mua <span>0383300680</span> (8:30 - 20:00)
                 </div>
-              </div> 
+              </div>
               <div class="detall__container__media">
                 <img src="/template/images/gh.jpg" alt="" class="detall__container__media-image">
                 <span class="detall__container__media-txt">
@@ -119,7 +124,7 @@
                 </span>
               </div>
               @endif
-             
+
             </div>
           </div>
           <div class="detall__container moh">
@@ -152,7 +157,7 @@
             </div>
             <div class="detall__content__text">
                 @if ($detall->content != '')
-                      {!! $detall->content !!}  
+                      {!! $detall->content !!}
                 @endif
 
                 @if ($detall->content == '')
@@ -169,7 +174,7 @@
             </div>
 
                 @include('porducts.loo')
-                
+
           </div>
         </div>
       </div>

@@ -6,28 +6,31 @@ use App\Http\Services\intro\introService;
 use App\Http\Services\menu\menuService;
 use App\Http\Services\policy\policyService;
 use App\Http\Services\product\productService;
+use App\Http\Services\product\productSliderService;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     protected $productService;
+    protected $productSliderService;
     protected $menuService;
     protected $introService;
     protected $policyService;
 
-    public function __construct(productService $productService, menuService $menuService, policyService $policyService)
+    public function __construct(productService $productService, menuService $menuService, policyService $policyService, productSliderService $productSliderService)
     {
         $this->productService = $productService;
         $this->menuService = $menuService;
         $this->policyService = $policyService;
         $this->introService = new introService;
+        $this->productSliderService = $productSliderService;
     }
-    
+
     public function index(Request $request)
     {
         $title = $request->input('search');
         $template = $title != null ? 'porducts.search' : 'porducts.product';
-        
+
         return view($template, [
             'title' => 'SHOPBASIC io vn',
             'product' => $this->productService->getShow($title),
@@ -35,7 +38,7 @@ class MainController extends Controller
             'menuHome' => $this->menuService->getHome()
         ]);
     }
-    
+
     public function detall($slug)
     {
         $detall = $this->productService->getDetall(0, $slug);
@@ -43,11 +46,12 @@ class MainController extends Controller
             'title' => 'SHOPBASIC - ' . $detall->title,
             'detall' => $detall,
             'staturs' => 3,
-            'product' => $this->productService->getListDetall($detall->menu_id, $detall->id)
+            'product' => $this->productService->getListDetall($detall->menu_id, $detall->id),
+            'sliders' => $this->productSliderService->getSlider($detall->id)
         ]);
     }
 
-    public function intro() 
+    public function intro()
     {
         return view('blogs.intro', [
             'title' => 'giới thiệu - SHOPBASIC',
@@ -63,7 +67,7 @@ class MainController extends Controller
     }
 
     public function categry($slug)
-    { 
+    {
         $resuit = $this->policyService->content($slug);
         return view('blogs.cage', [
             'title' => 'shop basic - ' . $resuit['title'],
@@ -72,7 +76,7 @@ class MainController extends Controller
         ]);
     }
 
-    public function loadMenuFirst(Request $request) 
+    public function loadMenuFirst(Request $request)
     {
         $id = $request->input('id');
         $menuId = $request->input('menu_id');

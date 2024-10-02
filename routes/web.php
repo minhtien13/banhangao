@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductSliderController;
 use App\Http\Controllers\Admin\UploadFileController;
 use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\RegisterController;
@@ -41,12 +42,15 @@ Route::get('dia-chi.html', [AccountController::class, 'address']);
 Route::get('dang-ky.html', [RegisterController::class, 'index']);
 Route::post('user/acc/register', [RegisterController::class, 'store']);
 
-//
+// PATH ADMIN AND PATH MANAGE
 Route::middleware(['auth'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('/', [MainController::class, 'index'])->name('admin');
+
+        #UPLOAD FILE MAIN
         Route::post('upload-file', [UploadFileController::class, 'upload']);
 
+        #MENU
         Route::prefix('menu')->group(function() {
             Route::get('add', [MenuController::class, 'create']);
             Route::post('add', [MenuController::class, 'store']);
@@ -88,7 +92,7 @@ Route::middleware(['auth'])->group(function() {
             Route::post('password/{user}', [UserController::class, 'passwordStore']);
         });
 
-        //
+        #PRODUCT
         Route::prefix('product')->group(function() {
             Route::get('add', [ProductController::class, 'create']);
             Route::post('add', [ProductController::class, 'store']);
@@ -97,6 +101,16 @@ Route::middleware(['auth'])->group(function() {
             Route::get('edit/{id}', [ProductController::class, 'show']);
             Route::post('edit/{id}', [ProductController::class, 'update']);
             Route::DELETE('remove', [ProductController::class, 'destroy']);
+
+            #Slider product
+            Route::prefix('slider')->group(function() {
+                Route::get('add/{id}', [ProductSliderController::class, 'create']);
+                Route::post('add/{id}', [ProductSliderController::class, 'store']);
+                Route::get('list/{id}', [ProductSliderController::class, 'index']);
+                Route::get('edit/{id}', [ProductSliderController::class, 'show']);
+                Route::post('edit/{id}', [ProductSliderController::class, 'update']);
+                Route::DELETE('remove', [ProductSliderController::class, 'destroy']);
+            });
         });
 
         #Account manage

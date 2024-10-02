@@ -59,9 +59,11 @@
           </a>
         </div>
       @else
-        <div class="product__page">
-            {{ $product->links() }}
-        </div>
+        @if (isset($page))
+            <div class="product__page">
+                {{ $product->links() }}
+            </div>
+        @endif
       @endif
 
     </div>
