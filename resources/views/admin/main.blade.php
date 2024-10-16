@@ -4,6 +4,22 @@
     @include('admin.head')
 </head>
 
+<div class="p-2 bg-info">
+    <div class="row">
+        <div class="col-6">
+            <div class="d-flex align-items-center">
+                <span>Admin</span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="d-flex justify-content-end align-items-center">
+                <span class="d-black mr-2 text-capitalize">{{ \Auth::user()->name }}</span>
+                <img src="/template/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" width="25" height="25" alt="User Image">
+            </div>
+        </div>
+    </div>
+</div>
+
 <body class="hold-transition sidebar-mini">
   @include('admin.header')
 

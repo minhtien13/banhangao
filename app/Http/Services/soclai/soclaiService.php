@@ -3,9 +3,10 @@
 namespace App\Http\Services\soclai;
 
 use App\Models\soclai;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
-class soclaiService 
+class soclaiService
 {
     public function insert($request)
     {
@@ -40,6 +41,10 @@ class soclaiService
         $id = (int)$request->input('id');
         $resuit = soclai::where('id', $id)->first();
         if ($resuit) {
+            $url = trim($resuit->thumb, '/');
+            if (File::exists($url)) {
+                file::delete($url);
+            }
             return soclai::where('id', $id)->delete();
         }
 

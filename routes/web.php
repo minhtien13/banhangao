@@ -17,17 +17,13 @@ use App\Http\Controllers\Admin\ProductSliderController;
 use App\Http\Controllers\Admin\UploadFileController;
 use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\RegisterController;
-use Illuminate\Support\Facades\Artisan;
 
-Route::get('run', function(){
-    Artisan::call('storage:link');
-});
-
+// login to account admin
 Route::get('user/login', [LoginController::class, 'index'])->name('login');
 Route::post('user/login', [LoginController::class, 'login']);
 Route::get('user/logout', [MainController::class, 'logout']);
 
-//
+// login to account client
 Route::get('dang-nhap.html', [App\Http\Controllers\LoginController::class, 'index'])->name('accLogin');
 Route::post('user/acc/login', [App\Http\Controllers\LoginController::class, 'login']);
 Route::get('dang-xuat.logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('accLogout');
@@ -60,6 +56,7 @@ Route::middleware(['auth'])->group(function() {
             Route::DELETE('remove', [MenuController::class, 'destroy']);
         });
 
+        #Social
         Route::prefix('soclai')->group(function() {
             Route::get('add', [SoclaiController::class, 'create']);
             Route::post('add', [SoclaiController::class, 'store']);
@@ -69,6 +66,7 @@ Route::middleware(['auth'])->group(function() {
             Route::DELETE('remove', [SoclaiController::class, 'destroy']);
         });
 
+        #Policy
         Route::prefix('policy')->group(function() {
             Route::get('add', [PolicyController::class, 'create']);
             Route::post('add', [PolicyController::class, 'store']);
@@ -78,12 +76,14 @@ Route::middleware(['auth'])->group(function() {
             Route::DELETE('remove', [PolicyController::class, 'destroy']);
         });
 
+        #Cart
         Route::prefix('cart')->group(function() {
             Route::get('list', [CartController::class, 'index']);
             Route::get('view/{id}', [CartController::class, 'cart']);
             Route::DELETE('remove', [CartController::class, 'destroy']);
         });
 
+        #Account
         Route::prefix('account')->group(function() {
             Route::get('contomer', [UserController::class, 'contomer']);
             Route::get('chang/{user}', [UserController::class, 'chang']);
@@ -125,6 +125,7 @@ Route::middleware(['auth'])->group(function() {
                 Route::DELETE('remove', [PostController::class, 'destroy']);
             });
 
+            #Manage Account
             Route::prefix('account')->group(function() {
                 Route::get('list', [UserController::class, 'index']);
                 Route::get('add', [UserController::class, 'create']);
@@ -134,6 +135,7 @@ Route::middleware(['auth'])->group(function() {
                 Route::DELETE('remove', [UserController::class, 'destroy']);
             });
 
+            #Intro
             Route::prefix('intro')->group(function() {
                 Route::get('add', [IntroController::class, 'create']);
                 Route::post('add', [IntroController::class, 'store']);
@@ -143,6 +145,7 @@ Route::middleware(['auth'])->group(function() {
                 Route::DELETE('remove', [IntroController::class, 'destroy']);
             });
 
+            #Contact
             Route::prefix('contact')->group(function() {
                 Route::get('add', [ContactControlle::class, 'create']);
                 Route::post('add', [ContactControlle::class, 'store']);
@@ -155,17 +158,19 @@ Route::middleware(['auth'])->group(function() {
     });
 });
 
+// tranh chủ, trang giới thiệu, trang tìm kiếm
 Route::get('/', [App\Http\Controllers\MainController::class, 'index']);
 Route::post('load-menu-first', [App\Http\Controllers\MainController::class, 'loadMenuFirst']);
 Route::get('san-pham/{slug}.html', [App\Http\Controllers\MainController::class, 'detall']);
 Route::get('gioi-thieu.html', [App\Http\Controllers\MainController::class, 'intro']);
 Route::get('search', [App\Http\Controllers\MainController::class, 'search']);
+
+// trang tin tức
 Route::get('tin-tuc/{slug}.html', [App\Http\Controllers\MainController::class, 'categry']);
-
 Route::get('tin-tuc.html', [App\Http\Controllers\PostController::class, 'index']);
-
 Route::get('lien-he.html', [App\Http\Controllers\ContactController::class, 'index']);
 
+// public trang sản phẩm
 Route::get('san-pham.html', [App\Http\Controllers\ProductController::class, 'product']);
 Route::post('load-product-list', [App\Http\Controllers\ProductController::class, 'loadProductList']);
 Route::post('product-select', [App\Http\Controllers\ProductController::class, 'productSelect']);
@@ -173,6 +178,7 @@ Route::post('load-detall', [App\Http\Controllers\ProductController::class, 'load
 Route::get('danh-sach/{id}-{slug}.html', [App\Http\Controllers\ProductController::class, 'productList']);
 Route::get('danh-muc/{id}-{slug}.html', [App\Http\Controllers\ProductController::class, 'productListMenu']);
 
+// phần giỏ hàng
 Route::post('cart-add', [App\Http\Controllers\CartContoller::class, 'addCart']);
 Route::get('gio-hang.html', [App\Http\Controllers\CartContoller::class, 'index']);
 Route::post('cart-delete', [App\Http\Controllers\CartContoller::class, 'delete']);
