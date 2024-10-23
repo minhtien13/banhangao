@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -15,10 +14,10 @@ class AccountController extends Controller
         if (!isset($_COOKIE['email'])) {
             return redirect()->route('accLogin');
         }
-        
+
         $email = $_COOKIE['email'];
         $user = User::where('email', $email)->first();
-        
+
         return view('account.acc', [
             'title' => 'trang tài khoản - SHOPBASIC',
             'staturs' => 2,
@@ -90,7 +89,7 @@ class AccountController extends Controller
         }
 
         $data['password'] = Hash::make($passwordNew);
-        
+
         $resuit = User::find($user->id)->update($data);
 
         if ($resuit) {

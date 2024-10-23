@@ -170,6 +170,9 @@ Route::get('tin-tuc/{slug}.html', [App\Http\Controllers\MainController::class, '
 Route::get('tin-tuc.html', [App\Http\Controllers\PostController::class, 'index']);
 Route::get('lien-he.html', [App\Http\Controllers\ContactController::class, 'index']);
 
+//
+Route::get('blog', [App\Http\Controllers\BlogController::class, 'index']);
+
 // public trang sản phẩm
 Route::get('san-pham.html', [App\Http\Controllers\ProductController::class, 'product']);
 Route::post('load-product-list', [App\Http\Controllers\ProductController::class, 'loadProductList']);

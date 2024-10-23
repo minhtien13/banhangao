@@ -9,6 +9,9 @@
         <a href="/gioi-thieu.html" class="header-menu__link">Giới thiệu</a>
     </li>
     <li class="header-menu__item">
+        <a href="/blog" class="header-menu__link">Blog</a>
+    </li>
+    <li class="header-menu__item">
         <a href="/tin-tuc.html" class="header-menu__link">Tin tức</a>
     </li>
     <li class="header-menu__item">
