@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\c;
+use App\Http\Services\blog\blogService;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    protected $blog;
+    public function __construct(blogService $blog)
+    {
+        $this->blog = $blog;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.blogs.list', [
+            'title' => 'Danh sách blog',
+            'blogs' => $this->blog->get()
+        ]);
     }
 
     /**
@@ -25,7 +36,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.blogs.add', [
+            'title' => 'Tạo blog'
+        ]);
     }
 
     /**
@@ -36,18 +49,16 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'title' => 'required',
+            'thumb' => 'required'
+        ], [
+            'title.required' => 'Vui lòng nhập tên blog',
+            'thumb.required' => 'Vui lòng đăng ảnh blog'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function show(c $c)
-    {
-        //
+        $this->blog->insert($request);
+        return redirect()->back();
     }
 
     /**
@@ -56,9 +67,12 @@ class BlogController extends Controller
      * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function edit(c $c)
+    public function show(Blog $blog)
     {
-        //
+        return view('admin.blogs.edit', [
+            'title' => 'Cập nhật blog: ' . $blog->title,
+            'blog' => $blog
+        ]);
     }
 
     /**
@@ -68,9 +82,18 @@ class BlogController extends Controller
      * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, c $c)
+    public function update(Request $request, Blog $blog)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'thumb' => 'required'
+        ], [
+            'title.required' => 'Vui lòng nhập tên blog',
+            'thumb.required' => 'Vui lòng đăng ảnh blog'
+        ]);
+
+       $result = $this->blog->update($blog, $request);
+       return $result ?  redirect()->back() : redirect('/admin/blog/list');
     }
 
     /**
@@ -79,8 +102,11 @@ class BlogController extends Controller
      * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function destroy(c $c)
+    public function destroy(Request $request)
     {
-        //
+        $blog = $this->blog->remove($request);
+
+        return $blog ? response()->json(['error' => false, 'message' => 'Đã xóa blog thành công'], 200)
+                     : response()->json(['error' => true, 'message' => 'Xóa blog không thành công'], 500);
     }
 }

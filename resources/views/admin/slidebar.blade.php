@@ -51,6 +51,30 @@
 
       <li class="nav-item">
         <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-blog"></i>
+          <p>
+            Blog
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="/admin/blog/add" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Thêm mới</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/blog/list" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Danh sách </p>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
           <i class="nav-icon fas fa-link"></i>
           <p>
             kết nối mạng xa hội

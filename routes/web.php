@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\SoclaiController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CartController;
 use App\Http\Controllers\Admin\ContactControlle;
 use App\Http\Controllers\Admin\IntroController;
@@ -74,6 +75,16 @@ Route::middleware(['auth'])->group(function() {
             Route::get('edit/{id}', [PolicyController::class, 'edit']);
             Route::post('edit/{id}', [PolicyController::class, 'update']);
             Route::DELETE('remove', [PolicyController::class, 'destroy']);
+        });
+
+        #MENU
+        Route::prefix('blog')->group(function() {
+            Route::get('add', [BlogController::class, 'create']);
+            Route::post('add', [BlogController::class, 'store']);
+            Route::get('list', [BlogController::class, 'index']);
+            Route::get('edit/{blog}', [BlogController::class, 'show']);
+            Route::post('edit/{blog}', [BlogController::class, 'update']);
+            Route::DELETE('remove', [BlogController::class, 'destroy']);
         });
 
         #Cart
@@ -172,6 +183,7 @@ Route::get('lien-he.html', [App\Http\Controllers\ContactController::class, 'inde
 
 //
 Route::get('blog', [App\Http\Controllers\BlogController::class, 'index']);
+Route::get('blog/{slug}/{id}', [App\Http\Controllers\BlogController::class, 'detail']);
 
 // public trang sản phẩm
 Route::get('san-pham.html', [App\Http\Controllers\ProductController::class, 'product']);
