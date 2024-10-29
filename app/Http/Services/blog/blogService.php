@@ -74,4 +74,16 @@ class blogService
             return [];
         }
     }
+
+    public function detail($id = 0)
+    {
+        try {
+            return Blog::where('is_status', 1)
+                   ->where('id', $id)
+                   ->select('title', 'thumb', 'description', 'content')
+                   ->first();
+        } catch (Exception $error) {
+            return false;
+        }
+    }
 }

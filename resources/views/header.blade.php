@@ -3,7 +3,7 @@
 <div class="main">
   <header class="header">
     <div class="header__top">
-      <a href="/san-pham.html" class="header__top-link"
+      <a href="/san-pham" class="header__top-link"
         >Piên bản mới - Sự thay đổi lớn của basic</a
       >
       <span class="header__top-close">
@@ -41,19 +41,19 @@
               <ul class="header__user-list">
                 @if (!isset($_COOKIE['email']))
                     <li class="header__user-item">
-                        <a href="/dang-nhap.html" class="header__user-link">Đăng nhập</a>
+                        <a href="/dang-nhap" class="header__user-link">Đăng nhập</a>
                     </li>
                     <li class="header__user-item">
-                        <a href="/dang-ky.html" class="header__user-link">Đăng ký</a>
+                        <a href="/dang-ky" class="header__user-link">Đăng ký</a>
                     </li>
                 @endif
-                
-                
+
+
 
                 @if (isset($_COOKIE['email']))
                     <li class="header__user-item">
-                        <a href="/tai-khoan.html" class="header__user-link">Tài khoản</a>
-                    </li> 
+                        <a href="/tai-khoan" class="header__user-link">Tài khoản</a>
+                    </li>
                     <li class="header__user-item">
                         <a href="/dang-xuat.logout" class="header__user-link">Đăng xuất</a>
                     </li>
@@ -62,14 +62,14 @@
             </div>
           </li>
           <li class="header-right__item header__cart">
-            <a href="/gio-hang.html" class="header-right__link">
+            <a href="/gio-hang" class="header-right__link">
               <i class="fa-sharp fa-solid fa-bag-shopping"></i>
             </a>
-            <span class="header__cart-qty"> 
+            <span class="header__cart-qty">
               {{ App\helpers\helper::countCart() }}
-             
+
             </span>
-            <div class="header__cart__dropdown" id="header__cart__dropdown__2">     
+            <div class="header__cart__dropdown" id="header__cart__dropdown__2">
               {!! App\helpers\helper::autoLoadCart() !!}
             </div>
           </li>

@@ -24,8 +24,12 @@ class BlogController extends Controller
 
     public function detail($slug, $id)
     {
+        $blog = $this->blog->detail($id);
+        if (!$blog) return redirect('/blog');
+
         return view('blogs.detail', [
             'title' => 'chi tiết bài viết blog',
+            'blog' => $blog,
             'staturs' => 0
         ]);
     }

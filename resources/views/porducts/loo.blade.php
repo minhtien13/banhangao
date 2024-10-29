@@ -22,7 +22,7 @@
             />
 
             <div class="product-list__active">
-              <a href="/san-pham/{{ $productItem->slug_url }}.html" class="product-list__active-link">
+              <a href="/san-pham/{{ $productItem->slug_url }}" class="product-list__active-link">
                 <i class="fas fa-sliders-h"></i>
               </a>
               <a
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="product-list__content">
-            <a href="/san-pham/{{ $productItem->slug_url }}.html" class="product-list__title">
+            <a href="/san-pham/{{ $productItem->slug_url }}" class="product-list__title">
               <h1>{{ $productItem->title }}</h1>
             </a>
 
@@ -54,7 +54,7 @@
 
       @if ($staturs == 0)
         <div class="product__bottom">
-          <a href="/san-pham.html" class="btb product__bottom-link"
+          <a href="/san-pham" class="btb product__bottom-link"
             >Xem tất cả <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>

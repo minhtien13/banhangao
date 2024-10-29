@@ -16,17 +16,17 @@ function loadProductList(id, menuId, name) {
                 if (resuit.data.length != 0) {
                     html += rederItemProduct(resuit.data);
                     var link = `
-                            <a href="/danh-sach/${id}-ao-khoac.html" class="btb product__bottom-link">
+                            <a href="/danh-sach/${id}-ao-khoac" class="btb product__bottom-link">
                                 Xem tất cả <i class="fa-solid fa-chevron-right"></i>
                             </a>
                     `;
 
                     $("#product__is__emty__" + menuId).addClass("oh");
                     $("#product-list__" + menuId).removeClass("oh");
-                    $("#product-list__" + menuId).html(html);
+                    $("#product-list__" + menuId)(html);
 
                     $("#product__bottom__" + menuId).removeClass("oh");
-                    $("#product__bottom__" + menuId).html(link);
+                    $("#product__bottom__" + menuId)(link);
                 } else {
                     $("#product-list__" + menuId).addClass("oh");
                     $("#product__bottom__" + menuId).addClass("oh");
@@ -57,7 +57,7 @@ function rederItemProduct(data) {
                     <div class="product-list__active">
                     <a href="/san-pham/${
                         row["slug_url"]
-                    }.html" class="product-list__active-link">
+                    }" class="product-list__active-link">
                          <i class="fas fa-sliders-h"></i>
                     </a>
                     <a href="javascript:void(0)" onclick="loadDetall(${
@@ -70,7 +70,7 @@ function rederItemProduct(data) {
                 <div class="product-list__content">
                     <a href="/san-pham/${
                         row["slug_url"]
-                    }.html" class="product-list__title">
+                    }" class="product-list__title">
                     <h3>${row["title"]}</h3>
                     </a>
                     ${price(row["price"], row["price_sale"])}
@@ -112,7 +112,7 @@ function loadMenu(menuId, id) {
                 });
 
                 $("#product__bar__h2__" + menuId).text(title);
-                $("#product__select__list__" + menuId).html(item);
+                $("#product__select__list__" + menuId)(item);
             }
         },
     });
@@ -122,7 +122,7 @@ function price(priceOld = 0, priceSale = 0) {
     var html = "";
 
     if (priceOld == 0 && priceSale == 0) {
-        html += `<a href="/lien-he.html" class="product-list__price">Liên Hệ</a>`;
+        html += `<a href="/lien-he" class="product-list__price">Liên Hệ</a>`;
     }
 
     if (priceOld != 0 && priceSale == 0) {
@@ -159,7 +159,7 @@ function addCart(staturs = 0) {
         success: function (response) {
             if (response.error == false) {
                 if (staturs == 1) {
-                    window.location.replace("/gio-hang.html");
+                    window.location.replace("/gio-hang");
                     return false;
                 }
 
@@ -180,7 +180,7 @@ function addCartAlert(status = 0) {
 
     if (status == 1) {
         loadCartQty();
-        window.location = "/gio-hang.html";
+        window.location = "/gio-hang";
     } else {
         loadCart();
     }
@@ -204,8 +204,8 @@ function loadCart() {
         url: "cart/item",
         dataType: "JSON",
         success: function (response) {
-            $("#header__cart__dropdown__2").html(response.data);
-            $("#header__cart__dropdown__1").html(response.data);
+            $("#header__cart__dropdown__2")(response.data);
+            $("#header__cart__dropdown__1")(response.data);
         },
     });
 }
@@ -486,8 +486,8 @@ function CartUpdateQty(id, action = 1) {
             dataType: "JSON",
             success: function (response) {
                 if (response.error == false) {
-                    $("#order__price_" + id).html(response.data.price_total);
-                    $("#order__sumall").html(response.data.total);
+                    $("#order__price_" + id)(response.data.price_total);
+                    $("#order__sumall")(response.data.total);
                     $("#qty_number_id_" + id).val(response.data.qty);
                 }
             },

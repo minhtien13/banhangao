@@ -25,18 +25,18 @@ Route::post('user/login', [LoginController::class, 'login']);
 Route::get('user/logout', [MainController::class, 'logout']);
 
 // login to account client
-Route::get('dang-nhap.html', [App\Http\Controllers\LoginController::class, 'index'])->name('accLogin');
+Route::get('dang-nhap', [App\Http\Controllers\LoginController::class, 'index'])->name('accLogin');
 Route::post('user/acc/login', [App\Http\Controllers\LoginController::class, 'login']);
 Route::get('dang-xuat.logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('accLogout');
 
-Route::get('tai-khoan.html', [AccountController::class, 'account'])->name('account');
-Route::get('don-hang.html', [AccountController::class, 'order']);
-Route::get('doi-mat-khau.html', [AccountController::class, 'pass']);
+Route::get('tai-khoan', [AccountController::class, 'account'])->name('account');
+Route::get('don-hang', [AccountController::class, 'order']);
+Route::get('doi-mat-khau', [AccountController::class, 'pass']);
 Route::post('user/acc/change', [AccountController::class, 'chang']);
-Route::get('dia-chi.html', [AccountController::class, 'address']);
+Route::get('dia-chi', [AccountController::class, 'address']);
 
 //
-Route::get('dang-ky.html', [RegisterController::class, 'index']);
+Route::get('dang-ky', [RegisterController::class, 'index']);
 Route::post('user/acc/register', [RegisterController::class, 'store']);
 
 // PATH ADMIN AND PATH MANAGE
@@ -172,33 +172,33 @@ Route::middleware(['auth'])->group(function() {
 // tranh chủ, trang giới thiệu, trang tìm kiếm
 Route::get('/', [App\Http\Controllers\MainController::class, 'index']);
 Route::post('load-menu-first', [App\Http\Controllers\MainController::class, 'loadMenuFirst']);
-Route::get('san-pham/{slug}.html', [App\Http\Controllers\MainController::class, 'detall']);
-Route::get('gioi-thieu.html', [App\Http\Controllers\MainController::class, 'intro']);
+Route::get('san-pham/{slug}', [App\Http\Controllers\MainController::class, 'detall']);
+Route::get('gioi-thieu', [App\Http\Controllers\MainController::class, 'intro']);
 Route::get('search', [App\Http\Controllers\MainController::class, 'search']);
 
 // trang tin tức
-Route::get('tin-tuc/{slug}.html', [App\Http\Controllers\MainController::class, 'categry']);
-Route::get('tin-tuc.html', [App\Http\Controllers\PostController::class, 'index']);
-Route::get('lien-he.html', [App\Http\Controllers\ContactController::class, 'index']);
+Route::get('tin-tuc/{slug}', [App\Http\Controllers\MainController::class, 'categry']);
+Route::get('tin-tuc', [App\Http\Controllers\PostController::class, 'index']);
+Route::get('lien-he', [App\Http\Controllers\ContactController::class, 'index']);
 
 //
 Route::get('blog', [App\Http\Controllers\BlogController::class, 'index']);
 Route::get('blog/{slug}/{id}', [App\Http\Controllers\BlogController::class, 'detail']);
 
 // public trang sản phẩm
-Route::get('san-pham.html', [App\Http\Controllers\ProductController::class, 'product']);
+Route::get('san-pham', [App\Http\Controllers\ProductController::class, 'product']);
 Route::post('load-product-list', [App\Http\Controllers\ProductController::class, 'loadProductList']);
 Route::post('product-select', [App\Http\Controllers\ProductController::class, 'productSelect']);
 Route::post('load-detall', [App\Http\Controllers\ProductController::class, 'loadDetall']);
-Route::get('danh-sach/{id}-{slug}.html', [App\Http\Controllers\ProductController::class, 'productList']);
-Route::get('danh-muc/{id}-{slug}.html', [App\Http\Controllers\ProductController::class, 'productListMenu']);
+Route::get('danh-sach/{id}-{slug}', [App\Http\Controllers\ProductController::class, 'productList']);
+Route::get('danh-muc/{id}-{slug}', [App\Http\Controllers\ProductController::class, 'productListMenu']);
 
 // phần giỏ hàng
 Route::post('cart-add', [App\Http\Controllers\CartContoller::class, 'addCart']);
-Route::get('gio-hang.html', [App\Http\Controllers\CartContoller::class, 'index']);
+Route::get('gio-hang', [App\Http\Controllers\CartContoller::class, 'index']);
 Route::post('cart-delete', [App\Http\Controllers\CartContoller::class, 'delete']);
 Route::post('cart-update-qty', [App\Http\Controllers\CartContoller::class, 'cartUpdateQty']);
-Route::get('dat-hang.html', [App\Http\Controllers\CartContoller::class, 'checkout']);
+Route::get('dat-hang', [App\Http\Controllers\CartContoller::class, 'checkout']);
 Route::post('cart/store', [App\Http\Controllers\CartContoller::class, 'store']);
 Route::post('cart/qty', [App\Http\Controllers\CartContoller::class, 'countQty']);
 Route::post('cart/item', [App\Http\Controllers\CartContoller::class, 'itemCart']);

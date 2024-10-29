@@ -10,7 +10,7 @@ use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-class helper  
+class helper
 {
     public static function menus($data, $id = 0, $string = '')
     {
@@ -60,7 +60,7 @@ class helper
     public static function headPrice($priceOld, $priceSale, $class = 'product-list__price')
     {
         if ($priceOld == 0 && $priceSale == 0) {
-            return '<a href="/lien-he.html" class="'. $class .'">Liên Hệ</a>';
+            return '<a href="/lien-he" class="'. $class .'">Liên Hệ</a>';
         }
 
         if ($priceOld != 0 && $priceSale == 0) {
@@ -70,7 +70,7 @@ class helper
         if ($priceOld != 0 && $priceSale != 0) {
             return '<span class="'. $class .'">' . number_format($priceSale) . '<sup>đ</sup></span>';
         }
-       
+
 
     }
 
@@ -87,13 +87,13 @@ class helper
                       <span class="bread__list-link">'. $title .'</span>
                     </li>';
         }
-      
+
         if ($menu != 0) {
             return ' <li class="bread__list-item">
-                      <a href="/danh-muc/'.$menuData->id . '-'  . \Str::slug($menuData->name, '-') .'.html" class="bread__list-link">'. $menuData->name .' /</a>
+                      <a href="/danh-muc/'.$menuData->id . '-'  . \Str::slug($menuData->name, '-') .'" class="bread__list-link">'. $menuData->name .' /</a>
                     </li>
                     <li class="bread__list-item">
-                      <a href=".html" class="bread__list-link">'. $title .'</a>
+                      <a href="" class="bread__list-link">'. $title .'</a>
                     </li>
                     ';
         }
@@ -103,7 +103,7 @@ class helper
         $html = '';
 
        foreach ($data as $item) {
-            if ($item['parent_id'] == 0) { 
+            if ($item['parent_id'] == 0) {
                 if ($item['limited_edition'] == 0) {
                     $html .= '
                       <section class="product">
@@ -111,7 +111,7 @@ class helper
                             <div class="product__bar product__bar--flex">
                             <div
                             class="product__bar-heading product__select-heading down"
-                           
+
                             >
                             <h2 id="product__bar__h2__'. $item['id'] .'">'. $item['name'] .'</h2>
                             <span class="product__bar-heading-icon">R</span>
@@ -125,11 +125,11 @@ class helper
                             </ul>
                             </div>
                         </div>
-                    
+
                     ';
 
                     $html .= self::item($item['id'], $item['name']);
-                    
+
                     $html .= ' </section>';
                 }
 
@@ -153,7 +153,7 @@ class helper
                                             ></i>
                                         </span>
                                         </div>
-                            
+
                                         <ul class="product__select__list" id="product__select__list__' . $item['id'] . '" >
                                             ' . self::headMenu($item['id']) .'
                                         </ul>
@@ -164,7 +164,7 @@ class helper
                             ';
 
                             $html .= self::item($item['id'], $item['name']);
-                            
+
                             $html .= '</section>';
                 }
             }
@@ -198,7 +198,7 @@ class helper
                                 />
 
                                 <div class="product-list__active">
-                                <a href="/san-pham/'. $row['slug_url'] .'.html" class="product-list__active-link">
+                                <a href="/san-pham/'. $row['slug_url'] .'" class="product-list__active-link">
                                      <i class="fas fa-sliders-h"></i>
                                 </a>
                                 <a
@@ -211,7 +211,7 @@ class helper
                                 </div>
                             </div>
                             <div class="product-list__content">
-                                <a href="/san-pham/'. $row['slug_url'] .'.html" class="product-list__title">
+                                <a href="/san-pham/'. $row['slug_url'] .'" class="product-list__title">
                                 <h3>'. $row['title'] .'</h3>
                                 </a>
                                 '. self::headPrice($row['price'], $row['price_sale']) .'
@@ -228,7 +228,7 @@ class helper
 
             $html .= '
                 <div class="product__bottom" id="product__bottom__' . $menuId . '">
-                        <a href="/danh-sach/' . $menuId . '-' . \Str::slug($nameMenu) . '.html" class="btb product__bottom-link"
+                        <a href="/danh-sach/' . $menuId . '-' . \Str::slug($nameMenu) . '" class="btb product__bottom-link"
                         >Xem tất cả <i class="fa-solid fa-chevron-right"></i>
                         </a>
                     </div>
@@ -241,16 +241,16 @@ class helper
                     </div>
                 ';
         }
-    
+
         if (count($data) == 0) {
             $html .= '<div class="product__is__emty" id="product__is__emty__'.  $menuId . '">
                         <span class="product___is__emty-txt">
-                        Đang cập nhật sản phẩm... 
+                        Đang cập nhật sản phẩm...
                         </span>
                     </div>
                 ';
         }
-        
+
         return $html;
     }
 
@@ -288,7 +288,7 @@ class helper
             $html .= '
                 <p class="header__cart__dropdown-message ">
                    Giỏ hàng không có sản phẩm
-                </p>    
+                </p>
             ';
         }
 
@@ -333,18 +333,18 @@ class helper
                 Tổng tiền tính tạm:
                 <span>'. number_format($sumAll) .'<sup>đ</sup></span>
               </p>
-              <a href="/dat-hang.html" class="btn header__cart__payment-btn">
+              <a href="/dat-hang" class="btn header__cart__payment-btn">
                 Tiến hành thanh toán
               </a>
             </div>
           </div>
             ';
         }
-        
+
         return $html;
     }
 
-    public static function countCart() 
+    public static function countCart()
     {
         $number = 0;
         $cart = Session::get('carts');
@@ -357,15 +357,15 @@ class helper
             $number = count($cart);
           }
         }
-        
+
         return $number;
     }
 
-    public static function getAcc($key = 'name') 
+    public static function getAcc($key = 'name')
     {
         $email = $_COOKIE['email'];
         $user = User::where('email', $email)->select('name', 'email')->first();
- 
+
         return  $user[$key];
     }
 
@@ -375,5 +375,20 @@ class helper
         $week = array("Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy");
         $w = (int)$datetime->format('w');
         return $week[$w];
+    }
+
+    public static function price($priceOld = 0, $priceSale = 0)
+    {
+        if ($priceOld == 0 && $priceSale == 0) return false;
+
+        if ($priceOld != 0 && $priceSale == 0) {
+            return number_format($priceOld, 0, ',', '.');
+        }
+
+        if ($priceOld != 0 && $priceSale != 0) {
+            return number_format($priceSale, 0, ',', '.');
+        }
+
+        return false;
     }
 }

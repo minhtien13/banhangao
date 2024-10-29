@@ -3,9 +3,9 @@
 @section('container')
 
     @include('alert')
-   
-    
-    <section class="container">   
+
+
+    <section class="container">
         <div class="cart__container">
             @if (!isset($cart) || count($cart) == 0)
                     <div class="cart__container__emty">
@@ -26,7 +26,7 @@
                         Về trang cửa hàng để chọn mua sản phẩm bạn nhé!!
                         </p>
                         <div class="product__bottom">
-                        <a href="/san-pham.html" class="btb product__bottom-link">
+                        <a href="/san-pham" class="btb product__bottom-link">
                             Mua sấm ngay
                         </a>
                         </div>
@@ -46,7 +46,7 @@
 
                                 @php
                                     $price = $row->price_sale != 0 ? $row->price_sale : $row->price;
-                                    $sum = $price * $cart[$row->id]; 
+                                    $sum = $price * $cart[$row->id];
                                     $sumAll += $sum;
                                 @endphp
                                 <div class="cart__container__order__item cart__id__{{ $row->id }}">
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                     </div>
-                                </div>  
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                             Lấy mã <i class="fas fa-chevron-right"></i>
                             </a>
                         </div>
-                        <a href="/dat-hang.html" class="cart__container__order__payment__btn btn">
+                        <a href="/dat-hang" class="cart__container__order__payment__btn btn">
                             thanh toán
                         </a>
                         <ul class="cart__container__order__payment__list">
@@ -134,5 +134,5 @@
                     </div>
             @endif
         </div>
-    </section> 
+    </section>
 @endsection

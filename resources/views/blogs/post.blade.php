@@ -39,16 +39,16 @@
             <h3 class="post-list__heading">Menu</h3>
             <ul class="post-list">
               <li class="post-list__item">
-                <a href="/san-pham.html" class="post-list__link">Sản phẩm</a>
+                <a href="/san-pham" class="post-list__link">Sản phẩm</a>
               </li>
               <li class="post-list__item">
-                <a href="/tin-tuc.html" class="post-list__link">Tin tức</a>
+                <a href="/tin-tuc" class="post-list__link">Tin tức</a>
               </li>
               <li class="post-list__item">
-                <a href="/gioi-thieu.html" class="post-list__link">Giới thiệu</a>
+                <a href="/gioi-thieu" class="post-list__link">Giới thiệu</a>
               </li>
               <li class="post-list__item">
-                <a href="/lien-he.html" class="post-list__link">Liện hệ</a>
+                <a href="/lien-he" class="post-list__link">Liện hệ</a>
               </li>
             </ul>
           </div>

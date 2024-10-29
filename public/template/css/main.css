@@ -2757,7 +2757,8 @@ body {
 .blog_page__product__info-link:hover {
     color: #007bff;
 }
-.blog_page__product__info-price {
+.blog_page__product__info-price,
+.blog_page__product__info-price .link {
     margin-top: 3px;
     color: #df0000;
     font-size: 1.3rem;
@@ -2778,6 +2779,61 @@ body {
 .blog_page__menu ul li a:hover {
     color: #007bff;
 }
+
+/*  */
+.blog_page__detail {
+    padding-right: 20px;
+}
+.blog_page__detail-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+}
+.blog_page__detail-image {
+    margin-top: 20px;
+    width: 100%;
+    height: 450px;
+    position: relative;
+}
+.blog_page__detail-image::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    width: 100%;
+    height: 1px;
+    background-color: #7e7676;
+}
+.blog_page__detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.blog_page__detail-description {
+    margin-top: 30px;
+    padding-top: 20px;
+}
+.blog_page__detail-description p {
+    font-size: 1.4rem;
+    color: #686161;
+    font-weight: 500;
+}
+.blog_page__detail--heading {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #000;
+    text-transform: capitalize;
+}
+.blog_page__detail-content {
+    margin-top: 30px;
+}
+.blog_page__blog--container {
+    font-size: 1.4rem;
+    color: #201e1e;
+    font-weight: 500;
+}
+
 /* acc */
 .user__main {
     margin-top: 3rem;

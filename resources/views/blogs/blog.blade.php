@@ -26,7 +26,7 @@
                     </ul>
                  </div>
                  <div class="blog_page__wrapper">
-                    @include('blogs.slidebar')
+                    @include('blogs.sidebar')
                  </div>
             </div>
         </div>

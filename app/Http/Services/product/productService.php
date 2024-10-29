@@ -3,6 +3,7 @@
 namespace App\Http\Services\product;
 
 use App\Models\product;
+use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
@@ -114,6 +115,18 @@ class productService
                 ->where('id', $id)
                 ->select('title','slug_url', 'thumb', 'price', 'menu_id', 'price_sale', 'id', 'product_color', 'product_code')
                 ->first();
+        }
+    }
+
+    public function showProductToPageBlog($page = 5)
+    {
+        try {
+            return product::orderByDesc('id')
+                ->where('is_active', 1)
+                ->select('title','slug_url', 'thumb', 'price', 'price_sale')
+                ->paginate($page);
+        } catch (Exception $error) {
+            return [];
         }
     }
 
