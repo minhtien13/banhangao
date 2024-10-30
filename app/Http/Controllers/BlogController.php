@@ -22,6 +22,18 @@ class BlogController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('s');
+        if (!isset($query) && $query == '') return redirect()->route('blog');
+
+        return view('blogs.blog', [
+            'title' => 'Tìm kiểm blog',
+            'blogs' => $this->blog->showPublic($query),
+            'staturs' => 0
+        ]);
+    }
+
     public function detail($slug, $id)
     {
         $blog = $this->blog->detail($id);

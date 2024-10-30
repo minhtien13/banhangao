@@ -133,7 +133,7 @@
                 <p class="detall__container__share__lable">Chia sẽ</p>
                 <ul class="detall__container__share__list">
                   <li class="detall__container__share__list-item">
-                    <a href="" style="--scial-icon-bg: #4267b2" class="detall__container__share__list-link">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ 'http://shop-24-7.test' . $detall->slug_url }}" target="_blank" style="--scial-icon-bg: #4267b2" class="detall__container__share__list-link">
                       <i class="fab fa-facebook-f"></i>
                     </a>
                   </li>

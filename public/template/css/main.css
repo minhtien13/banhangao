@@ -2671,6 +2671,10 @@ body {
     font-weight: 600;
     display: block;
     transition: color ease 0.3s;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 .blog_page__right-title:hover {
     color: #007bff;
@@ -2680,6 +2684,10 @@ body {
     font-size: 1.3rem;
     font-weight: 500;
     color: #726e6e;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 .blog_page__sidebar__main {
     width: 90%;

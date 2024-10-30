@@ -1,11 +1,11 @@
 <div class="blog_page__slidebar">
     <div class="blog_page__sidebar__main">
         <h4 class="blog_page__sidebar--heading">Tìm Kiểm</h4>
-        <form action="" class="blog_page__search-main">
+        <form action="/blog/query" class="blog_page__search-main">
             <button class="blog_page__search-btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
-            <input type="text" class="blog_page__search-input" placeholder="Tìm Kiểm">
+            <input type="text" name="s" class="blog_page__search-input" placeholder="Tìm Kiểm">
         </form>
     </div>
 

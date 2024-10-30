@@ -182,8 +182,9 @@ Route::get('tin-tuc', [App\Http\Controllers\PostController::class, 'index']);
 Route::get('lien-he', [App\Http\Controllers\ContactController::class, 'index']);
 
 //
-Route::get('blog', [App\Http\Controllers\BlogController::class, 'index']);
+Route::get('blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::get('blog/{slug}/{id}', [App\Http\Controllers\BlogController::class, 'detail']);
+Route::get('blog/query', [App\Http\Controllers\BlogController::class, 'search']);
 
 // public trang sản phẩm
 Route::get('san-pham', [App\Http\Controllers\ProductController::class, 'product']);

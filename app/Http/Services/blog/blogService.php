@@ -66,10 +66,23 @@ class blogService
     }
 
     #Public
-    public function showPublic($page = 10)
+    public function showPublic($query = '', $page = 10)
     {
         try {
-            return Blog::where('is_status', 1)->select('id', 'title', 'thumb', 'description')->paginate($page);
+            $blog = [];
+            if ($query != '') {
+                $blog = Blog::where('is_status', 1)
+                        ->where('title', 'LIKE', '%' . $query . '%')
+                        ->select('id', 'title', 'thumb', 'description')
+                        ->paginate($page);
+            } else {
+                $blog = Blog::where('is_status', 1)
+                        ->select('id', 'title', 'thumb', 'description')
+                        ->paginate($page);
+            }
+
+            return $blog;
+
         } catch (Exception $error) {
             return [];
         }
