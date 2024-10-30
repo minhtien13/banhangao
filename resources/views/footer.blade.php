@@ -24,15 +24,15 @@
                @foreach ($policy as $item)
                   @if ($item->is_type == 1)
                     <li class="footer__list-item">
-                      <a href="/tin-tuc/{{ $item->link_url }}.html" class="footer__list-link">
+                      <a href="/tin-tuc/{{ $item->link_url }}" class="footer__list-link">
                         {{ $item->title }}
                       </a>
-                    </li> 
-                  @endif              
+                    </li>
+                  @endif
               @endforeach
             @endif
-           
-          
+
+
           </ul>
         </div>
         <div class="footer__item">
@@ -42,11 +42,11 @@
                @foreach ($policy as $item)
                   @if ($item->is_type == 0)
                     <li class="footer__list-item">
-                      <a href="/tin-tuc/{{ $item->link_url }}.html" class="footer__list-link">
+                      <a href="/tin-tuc/{{ $item->link_url }}" class="footer__list-link">
                         {{ $item->title }}
                       </a>
-                    </li> 
-                  @endif              
+                    </li>
+                  @endif
               @endforeach
             @endif
           </ul>
@@ -113,7 +113,7 @@
             <ul class="footer-social__list">
             @if (count($soclai) != 0)
               @foreach ($soclai as $rowSoclai)
-                
+
               <li class="footer-social__item">
                 <a href="{{ $rowSoclai->slug_link }}" class="footer-social__link">
                   <img
@@ -202,7 +202,7 @@
 <div class="overlay detall__modal__overlay oh"></div>
 <div class="detall__modal oh">
     <div class="detall__modal__container " >
-      <div class="detall__modal__wrapper" id="detall__container__image">  
+      <div class="detall__modal__wrapper" id="detall__container__image">
       </div>
       <div class="detall__modal__wrapper">
       <div class="detall__modal__wrapper__info" id="detall__info">
@@ -228,7 +228,7 @@
         <button class="btn detall__container__add__btn" onClick="addCart()">
             THÊM VÀO GIỞ HÀNG
         </button>
-        </div> 
+        </div>
       </div>
     </div>
     <span class="detall__modal__close">

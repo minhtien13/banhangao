@@ -23,7 +23,7 @@ function loadProductList(id, menuId, name) {
 
                     $("#product__is__emty__" + menuId).addClass("oh");
                     $("#product-list__" + menuId).removeClass("oh");
-                    $("#product-list__" + menuId)(html);
+                    $("#product-list__" + menuId).html(html);
 
                     $("#product__bottom__" + menuId).removeClass("oh");
                     $("#product__bottom__" + menuId)(link);

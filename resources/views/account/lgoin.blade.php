@@ -12,7 +12,7 @@
             <h3 class="account__top__heading">ĐĂNG NHẬP TÀI KHOẢN</h3>
             <span class="account__top__txt">
               Bạn có tài khoảng chưa ?
-              <a href="/dang-ky.html" class="account__top__txt-link">
+              <a href="/dang-ky" class="account__top__txt-link">
                 đăng ký tại đây
               </a>
             </span>
